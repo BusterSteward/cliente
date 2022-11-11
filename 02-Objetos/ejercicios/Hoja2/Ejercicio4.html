@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+</head>
+<body>
+    <h1>Ejercicio 4 - Hoja 2</h1>
+    
+    <p id="result"></p>
+</body>
+<script>
+    function ejercicio4(){
+        let c1,c2,c3;
+
+        
+        c1=prompt("Introduce el primer coeficiente:");
+        c1=parseInt(c1);
+        if(c1===""||isNaN(c1))
+            return "Error, no se ha introducido el dato o se ha introducido un dato incorrecto";
+
+        
+        c2=prompt("Introduce el segundo coeficiente:");
+        c2=parseInt(c2);
+        if(c2===""||isNaN(c2))
+            return "Error, no se ha introducido el dato o se ha introducido un dato incorrecto";
+
+        c3=prompt("Introduce el término independiente:");
+        c3=parseInt(c3);
+        if(c3===""||isNaN(c3))
+            return "Error, no se ha introducido el dato o se ha introducido un dato incorrecto";
+
+        //(-b +-sqrt(pow(b,2)-4ac))/2a
+
+        if(c1==0){
+            let r = -c3/c2;
+            return "La única raíz de la ecuación es: "+r;
+        }
+        let html="";
+
+        let r1,r2;
+
+        let pow = Math.pow(c2,2);
+        let cuatroac=4*c1*c3;
+        let D = pow-cuatroac;
+        if(D<0){
+            html+="La ecuación no tiene solucion"
+        }
+        else if(D==0){
+            let sqrt=Math.sqrt(D);
+            let dividendo = -c2+sqrt;
+            let divisor = 2*c1;
+            r1 = dividendo/divisor;
+            html+="La única raiz de la ecuación es: "+r1+"<br>";
+        }
+        else{
+            let sqrt=Math.sqrt(D);
+            let dividendo1 = -c2+sqrt;
+            let dividendo2 = -c2-sqrt;
+            let divisor = 2*c1;
+            r1 = dividendo1/divisor;
+            
+            html+="La primera raiz de la ecuación es: "+r1+"<br>";
+            r2 = dividendo2/divisor;
+            html+="La segunda raiz de la ecuación es: "+r2+"<br>";
+        }
+        
+        
+        return html;
+    }
+    let solucion=ejercicio4();
+    document.getElementById("result").innerHTML=solucion;
+</script>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <p id="result"></p>
+</body>
+<script>
+    function imprimirMatriz(m){
+        let cad="";
+        for(let i=0;i<m.length;i++){
+            cad+="["
+            for(let j=0;j<m[0].length;j++){
+                if(j==m[0].length-1){
+                    cad+=m[i][j];
+                }
+                else
+                    cad+=m[i][j]+", ";
+            }
+            
+            
+            cad+="]<br>";
+        }
+
+        return cad;
+    }
+    function matrizIdentidad(tam){
+        let matriz=[];
+
+        for(let i=0;i<tam;i++){
+            matriz[i]=[];
+            for(let j=0;j<tam;j++){
+                if(j==i){
+                    matriz[i][j]=1;
+                }
+                else{
+                    matriz[i][j]=0;
+                }
+            }
+        }
+        return matriz;
+    }
+    let html;
+    
+    let tam=Math.trunc(Math.random()*6)+5;
+
+    let matriz=matrizIdentidad(tam);
+    html=imprimirMatriz(matriz);
+        
+    document.getElementById("result").innerHTML=html;
+</script>
+</html>

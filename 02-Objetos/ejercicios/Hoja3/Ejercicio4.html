@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 4</title>
+</head>
+<body>
+    <script>
+        let res=true;
+        let num=Math.trunc(Math.random()*100)+1;
+        while(res){
+            res=res=confirm("El numero generado es "+num+" ¿quieres generar otro?");
+            num=Math.trunc(Math.random()*100)+1;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p id="resul"></p>
+<script>
+
+    //la función convierte el numero en string y comprueba si el ultimo caracter es un 0
+    function terminaEnCero(num){
+        let cadena=num.toString();
+        return cadena[cadena.length-1]=="0";
+
+    }
+
+    //recojo el elemento donde voy a mostrar el resultado
+    let p = document.getElementById("resul");
+
+    //declaro las variables necesarias para el algoritmo
+    let num=-1,
+        sumaImpares=0,
+        media=0,
+        nImpares=0,
+        nTerminaEnCero=0;
+        html="";
+
+    do{
+        //genero un número aleatorio y lo concateno en el html que mostraré después
+        num=Math.trunc((Math.random()*21)+100);
+        html+=num+"<br>";
+
+        //si el número generado es impar, se incrementa el numero de impares y la suma de los impares
+        if(num%2!=0){
+            sumaImpares+=num;
+            nImpares++;
+        }
+
+        //compruebo si el numero termina en 0 y si es así, incremento el contador
+        if(terminaEnCero(num))
+            nTerminaEnCero++;
+
+    }while(num!=120);//repito el bucle mientras no genere un 120
+
+    //calculo la media de todos los impares
+    media=sumaImpares/nImpares;
+
+    //añado al html que muestro el contador de números que terminan en 0 y la media de los impares
+    html+="Se han generado "+nTerminaEnCero+" números que terminan en 0 <br>";
+    html+="La media de los números impares es igual a: "+media+" <br>";
+
+    //cargo el html en la página
+    p.innerHTML=html;
+    
+</script>
+</body>
+</html>

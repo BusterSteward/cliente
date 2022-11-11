@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+<p id="result"></p>
+</body>
+<script src="./Ejercicio1.js"></script>
+<script>
+    function introducirTamanyo(){
+        let tam; 
+    
+        tam= prompt("Introduce el tamaño para la clave entre 5 y 10:");
+
+        if(tam!=null){
+            tam=tam.trim();
+            if(tam!=""){
+                tam=parseInt(tam);
+                while(tam<5||tam>10){
+                    tam= prompt("Tamaño inválido, introduce de nuevo el tamaño para la clave:");
+                    if(tam!=null){
+                        tam=tam.trim();
+                        if(tam!=""){
+                            tam=parseInt(tam);
+                        }
+                        else return tam;
+                    }
+                    else return tam;
+                }
+            }  
+        }
+        return tam;
+    }
+
+    let tam = introducirTamanyo();
+    if(tam==null){
+        document.getElementById("result").innerHTML="Se ha cancelado la operación";
+    }
+    else{
+        if(tam=="") tam=5;
+        let clave = generarClave(tam);
+        document.getElementById("result").innerHTML="Clave generada: "+clave;
+        let asteriscos="";
+        for(let i=0;i<clave.length;i++){
+            asteriscos+="*";
+        }
+        setTimeout(()=>{
+            
+            document.getElementById("result").innerHTML="Clave generada: "+asteriscos;
+        },5000);
+    }
+    
+</script>
+</html>

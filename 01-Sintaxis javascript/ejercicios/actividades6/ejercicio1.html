@@ -1,0 +1,40 @@
+﻿<html>
+    <head>
+        <title>Ejercicio 1</title>
+        
+    </head>
+    <body>
+        <p>Ejercicio 1</p>
+        <p id="resul"></p>
+    </body>
+    <script>
+        let num=prompt("Introduce un número");
+        num=parseInt(num);
+        fibonacci(num);
+        function fibonacci(x){
+            
+            if(isNaN(x)){
+                console.log("No se ha introducido un número");
+            }
+            else{
+                let fibo = new Array();
+                fibo[0]=1;
+                fibo[1]=1;
+        
+                let contador=0;
+        
+                let html="";
+                while(contador<x){
+                    if(contador>1){
+                        fibo[contador]=fibo[contador-1]+fibo[contador-2];
+                    }
+                    html+=fibo[contador]+"<br>";
+                    contador++;
+                }
+                document.getElementById("resul").innerHTML=html;
+            }
+            
+        }
+    </script>
+</html>
+

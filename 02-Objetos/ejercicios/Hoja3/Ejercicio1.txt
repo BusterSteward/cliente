@@ -1,0 +1,4 @@
+SetTimeOut
+Ejecuta una función 1 sola vez después de que haya pasado un tiempo en ms pasado por parámetro
+SetInterval
+Ejecuta una función cada vez que pase un periodo de tiempo en ms pasado por parámetro

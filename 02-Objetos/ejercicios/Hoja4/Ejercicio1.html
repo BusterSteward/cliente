@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio hoja 4</title>
+</head>
+<style>
+    .palabra{
+        color:blue;
+        font-weight: bold;
+    }
+    .fecha{
+        color:red;
+    }
+</style>
+<body>
+    <p id="result"></p>
+</body>
+<script>
+    function palabrasEncadenadas(p,n){
+        let finalP,inicioN;
+
+        finalP=p.substring(p.length-2,p.length);
+        inicioN=n.substring(0,2);
+
+        return finalP.toLowerCase()==inicioN.toLowerCase();
+    }
+
+    let palabra="hola";
+    let nPalabras=1;
+    let nuevaPalabra;
+    let res=true;
+    let html="<span class='palabra'>hola</span><br>";
+    let p = document.getElementById("result");
+    do{
+        nuevaPalabra=prompt(`Introduce una palabra encadenada.
+Palabra anterior: ${palabra}`);
+        if(nuevaPalabra==""||nuevaPalabra==null){
+            html="Error: la operación se ha cancelado";
+            break;
+        }
+        res=palabrasEncadenadas(palabra,nuevaPalabra);
+        if(res){
+            palabra=nuevaPalabra;
+            nPalabras++;
+            html+="<span class='palabra'>"+nuevaPalabra+"</span><br>";
+        }
+    }while(res);
+
+    if(!res){
+        let fecha = new Date();
+        html+="Se han encadenado "+nPalabras+" palabras. Fecha: <span class='fecha'>"+fecha.getDay()+"/"+fecha.getMonth()+"/"+fecha.getFullYear()+" "+fecha.getHours()+":"+fecha.getMinutes()+"</span>";
+    }
+    p.innerHTML=html;
+    
+
+
+</script>
+</html>

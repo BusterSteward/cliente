@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    <h1>Ejercicio 3 - Hoja 2</h1>
+    <p id="result"></p>
+</body>
+<script>
+    
+    let fechaHoy = new Date();
+    let year = fechaHoy.getFullYear();
+    let fechaInicioAnyo = new Date("01/01/"+year);
+
+    let msInicioAnyo = fechaInicioAnyo.getTime();
+    let msHoy = fechaHoy.getTime();
+
+    let msDiff=msHoy-msInicioAnyo;
+
+    //paso de milisegundos a dias
+    let dias = ((((msDiff/1000)/60)/60)/24);
+
+    document.getElementById("result").innerHTML="Han pasado "+Math.trunc(dias)+" dias desde que comenzó el año";
+</script>
+</html>

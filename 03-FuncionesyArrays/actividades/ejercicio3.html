@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    <h1>Ejercicio 3 - Hoja 2</h1>
+    <p id="result"></p>
+</body>
+<script>
+
+    function anyoBisiesto(a){
+        
+        return a%4==0||(a%100==0 && a%400==0);
+            
+    }
+
+    function validarFecha(dia,mes,anyo){
+
+        if(dia==undefined||isNaN(dia)||isNaN(mes)||isNaN(anyo)||anyo==undefined||mes==undefined) return false;
+
+        let diasPorMes=[31,28,21,30,31,30,31,31,30,31,30,31];
+
+        let fechaHoy = new Date();
+        let anyoActual= fechaHoy.getFullYear();
+
+        if(anyo>anyoActual||mes<1||mes>12) return false;
+        
+        if(mes==2&&anyoBisiesto(anyo)) diasPorMes[1]++;
+        
+        return dia>=1&&dia<=diasPorMes[mes-1];
+        
+        
+    }
+    //devuelve la fecha introducida en formato cadena "01/01/20XX" -> mes/dia/año
+    function introducirFecha(){
+        let dia,mes,anyo;
+        let fecha="";
+        anyo=prompt("Introduce el año:");
+        anyo=parseInt(anyo);
+
+        mes=prompt("Introduce el mes:");
+        mes=parseInt(mes);
+
+        dia=prompt("Introduce el dia:");
+        dia=parseInt(dia);
+
+        if(validarFecha(dia,mes,anyo)){
+            
+            if(mes<10)
+                fecha+="0";
+            fecha+=mes+"/";
+            if(dia<10)
+                fecha+="0";
+            fecha+=dia+"/"+anyo;
+        }
+        return fecha;
+        
+    }
+    let str_fechaIntroducida=introducirFecha();
+    if (str_fechaIntroducida==""){
+        document.getElementById("result").innerHTML="La fecha introducida no es válida";
+    }
+    else{
+        let date_fechaIntroducida=new Date(str_fechaIntroducida);
+
+        let year = date_fechaIntroducida.getFullYear();
+        let fechaInicioAnyo = new Date("01/01/"+year);
+
+        let msInicioAnyo = fechaInicioAnyo.getTime();
+        let msActual = date_fechaIntroducida.getTime();
+
+        let msDiff=msActual-msInicioAnyo;
+
+        //paso de milisegundos a dias
+        let dias = ((((msDiff/1000)/60)/60)/24);
+
+        document.getElementById("result").innerHTML="Han pasado "+Math.trunc(dias)+" dias desde el inicio de ese año hasta la fecha introducida";
+    }
+    
+</script>
+</html>

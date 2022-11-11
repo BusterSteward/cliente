@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <h1>Ejercicio 1</h1>
+    <p id="resul"></p>
+</body>
+<script>
+    String.prototype.isEmpty = function() {
+        return (this.length === 0 || !this.trim());
+    };
+    function anyoBisiesto(a){
+        let res=false;
+        if(a%4==0){
+            res=true;
+        }
+        else if(a%100==0 && a%400==0)
+            res=true;
+
+        return res;
+    }
+    function validarFecha(d,m,a){
+
+
+        d=parseInt(d);
+        m=parseInt(m);
+        a=parseInt(a);
+
+        if(isNaN(d)||isNaN(m)||isNaN(a))
+            return false;
+
+        let diasPorMes=[31,28,31,30,31,30,31,31,30,31,30,31];
+        if(anyoBisiesto(a))
+            diasPorMes[1]++;
+
+        if(m<0 || m>11){
+            return false;
+        }
+        if(d<0||d>diasPorMes[m])
+            return false;
+
+        return true;
+        
+    }
+    function nombreMes(m){
+        let n;
+        switch(m){
+            case "1":
+                n="Enero";
+                break;
+            case "2":
+                n="Febrero";
+                break;
+            case "3":
+                n="Marzo";
+                break;
+            case "4":
+                n="Abril";
+                break;
+            case "5":
+                n="Mayo";
+                break;
+            case "6":
+                n="Junio";
+                break;
+            case "7":
+                n="Julio";
+                break;
+            case "8":
+                n="Agosto";
+                break;
+            case "9":
+                n="Septiembre";
+                break;
+            case "10":
+                n="Octubre";
+                break;
+            case "11":
+                n="Noviembre";
+                break;
+            case "12":
+                n="Diciembre";
+                break;
+        }
+        return n;
+    }
+    function ejercicio1(){
+        let nombre,apellido1,apellido2,dia,mes,anyo;
+
+        const ERROR_MESSAGE="Has llegado al final por falta de datos en la entrada";
+
+        nombre = prompt("Introduce tu nombre");
+        
+        if(nombre==undefined || nombre.isEmpty()){
+            return ERROR_MESSAGE;
+        }
+        apellido1 = prompt("Introduce tu primer apellido");
+        if(apellido1==undefined || apellido1.isEmpty()){
+            return ERROR_MESSAGE;
+        }
+        apellido2 = prompt("Introduce tu segundo apellido");
+
+        dia = prompt("Introduzca el día de su fecha de nacimiento");
+        if(dia==undefined || dia.isEmpty()){
+            return ERROR_MESSAGE;
+        }
+        mes = prompt("Introduzca el mes de su fecha de nacimiento");
+        if(mes==undefined || mes.isEmpty()){
+            return ERROR_MESSAGE;
+        }
+        anyo = prompt("Introduzca el año de su fecha de nacimiento");
+        if(anyo==undefined || anyo.isEmpty()){
+            return ERROR_MESSAGE;
+        }
+
+        if(!validarFecha(dia,mes,anyo)){
+            return "Has llegado al final debido a que la fecha es inválida";
+        }
+        
+        let html="";
+
+        nombreCompleto = nombre+" "+apellido1;
+        
+        html+="Buenos dias "+nombre+" "+apellido1;
+        let ap2_lenght=0;
+        if(apellido2!=undefined){
+            html+=" "+apellido2;
+            nombreCompleto+=" "+apellido2;
+            ap2_lenght=apellido2.length;
+        }
+            
+        html+=".<br>";
+
+        html+="Tu nombre completo en mayúsculas es "+nombreCompleto.toUpperCase()+".<br>";
+
+        longitud=nombre.length+apellido1.length+ap2_lenght;
+
+        html+="Tu nombre completo tiene "+longitud+" caracteres.<br>";
+
+        html+="La primera letra A de tu nombre completo está en la posicion "+nombreCompleto.toUpperCase().indexOf("A")+".<br>";
+
+        html+="La última letra A de tu nombre completo está en la posicion "+nombreCompleto.toUpperCase().lastIndexOf("A")+".<br>";
+
+        html+="Tu nombre completo menos las 3 primeras letras es "+nombreCompleto.substring(3,nombreCompleto.length)+".<br>";
+
+        html+="Naciste el dia "+dia+" de "+nombreMes(mes)+" de "+anyo+".<br><br>";
+
+        html+="Te voy a dar unos datos interesantes:<br><br>";
+
+        let coseno=Math.cos(180);
+        coseno = coseno*1000;
+        coseno=Math.floor(coseno);
+        coseno=coseno/1000;
+
+        html+="El coseno de un ángulo de 180 grados es "+coseno+".<br>";
+
+        html+="El mayor número de (3, 45, -55, 6, 8) es "+Math.max(3,45,-55,6,8)+".<br>";
+
+        html+="El menor número de (3, 45, -55, 6, 8) es "+Math.min(3,45,-55,6,8)+".<br>";
+
+        html+="2 elevado a 10 es "+Math.pow(2,10)+".<br>";
+
+        return html;
+    }
+    let html = ejercicio1();
+
+    document.getElementById("resul").innerHTML=html;
+    
+</script>
+</html>

@@ -1,0 +1,83 @@
+﻿<html>
+    <head>
+        <title>Ejercicio 2</title>
+        
+    </head>
+    <body>
+        <p>Ejercicio 2</p>
+        <p id="resul"></p>
+    </body>
+    <script>
+
+        const DIAS_POR_MES=[31,28,31,30,31,30,31,31,30,31,30,31];
+
+        function validarMes(mes){
+            return mes<1 && mes>12;
+        }
+        function validarDia(mes,dia){
+            return dia<1 && dia>DIAS_POR_MES[mes];
+        }
+
+        function estacion(mes,dia){
+            
+            let est;
+            switch(mes){
+                case 1:
+                    est="Invierno";
+                    break;
+                case 2:
+                    est="Invierno";
+                    break;
+                case 3:
+                    dia>=20 ? est="Primavera" : est="Invierno";
+                    break;
+                case 4:
+                    est="Primavera";
+                    break;
+                case 5:
+                    est="Primavera";
+                    break;
+                case 6:
+                    dia>=21 ? est="Verano" : est="Primavera";
+                    break;
+                case 7:
+                    est="Verano";
+                    break;
+                case 8:
+                    est="Verano"
+                    break;
+                case 9:
+                    dia>=23 ? est="Otoño" : est="Verano";
+                    break;
+                case 10:
+                    est="Otoño";
+                    break;
+                case 11:
+                    est="Otoño";
+                    break;
+                case 12:
+                    dia>=21 ? est="Invierno" : est="Otoño";
+                    break;
+            }
+            return est;
+            
+        }
+
+        let mes,dia;
+        do{
+            mes=prompt("Introduce un mes del año");
+            mes=parseInt(mes);
+        }while(validarMes(mes));
+        
+        do{
+            dia=prompt("Introduce un dia del mes");
+            dia=parseInt(dia);
+        }while(validarDia(mes,dia));
+
+        let est = estacion(mes,dia);
+
+        document.getElementById("resul").innerHTML="La estación del año es: "+est;
+        
+        
+    </script>
+</html>

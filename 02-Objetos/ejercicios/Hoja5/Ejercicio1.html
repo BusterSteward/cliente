@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1 Hoja 5</title>
+</head>
+<body>
+    <script>
+        setTimeout(()=>{
+            let subventana = window.open("","subventana","height=300,width=500");
+            let nav = window.navigator;
+
+            subventana.document.write("<h1>Ejemplo de subventana</h1><p>URL de la ventana principal: "+window.location+"<br>Protocolo de la ventana principal: "+window.location.protocol+"<br></p><p>Codigo de navegador: "+nav.appCodeName+"<br>Nombre de navegador: "+nav.appName+"<br>Versión de navegador: "+nav.appVersion+"<br></p>");
+            
+            
+        },2000);
+    </script>
+</body>
+</html>

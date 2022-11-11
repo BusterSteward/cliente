@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p id="resul"></p>
+<script>
+    function esPrimo(num){
+        
+        for(let i=2;i<=(num/2);i++){
+            if(num%i==0){
+                return false;
+            }
+        }
+        return true;    
+    }
+
+    let p = document.getElementById("resul");
+    let random = Math.trunc((Math.random()*41))+10;
+
+    let html="";
+
+    for(let i=1;i<=random;i++){
+        if(esPrimo(i)){
+            html+= i+"<br>";
+        }
+    }
+    p.innerHTML=html;
+</script>
+</body>
+</html>

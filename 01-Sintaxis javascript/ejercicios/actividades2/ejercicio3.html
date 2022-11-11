@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p id="resul"></p>
+<script>
+    let p = document.getElementById("resul");
+    let random = Math.trunc((Math.random()*10))+1;
+
+    let html="";
+
+    for(let i=0;i<=10;i++){
+        html+= random +" x "+i+" = "+(random*i)+"<br>";
+    }
+    p.innerHTML=html;
+</script>
+</body>
+</html>

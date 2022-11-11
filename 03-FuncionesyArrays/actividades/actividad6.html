@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 6</title>
+</head>
+<body>
+    <p id="result"></p>
+</body>
+<script src="funcionVectorSimetrico.js"></script>
+<script>
+    let array1=[1,2,3,3,2,1];
+    let array2=[2,2,3,2,2];
+    let array3=[1,2,3,4,5,6];
+
+    let html="";
+    if(vectorSimetrico(array1)){
+        html+="El vector 1 [1,2,3,3,2,1] es simétrico<br>";
+    }
+    else{
+        html+="El vector 1 [1,2,3,3,2,1] no es simétrico<br>";
+    }
+    if(vectorSimetrico(array2)){
+        html+="El vector 2 [2,2,3,2,2] es simétrico<br>";
+    }
+    else{
+        html+="El vector 2 [2,2,3,2,2] no es simétrico<br>";
+    }
+    if(vectorSimetrico(array3)){
+        html+="El vector 3 [1,2,3,4,5,6] es simétrico<br>";
+    }
+    else{
+        html+="El vector 3 [1,2,3,4,5,6] no es simétrico<br>";
+    }
+    document.getElementById("result").innerHTML=html;
+</script>
+
+</html>

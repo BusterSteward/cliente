@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    <p id="result"></p>
+</body>
+<script>
+    let s=0;
+    setInterval(()=>{
+        s++;
+        let horas,minutos,segundos;
+        horas=s/3600;
+        horas=parseInt(horas);
+        s%=3600;
+        minutos=s/60;
+        minutos=parseInt(minutos);
+        segundos=s%60;
+        
+        if(minutos<10) minutos="0"+minutos;
+        if(segundos<10) segundos="0"+segundos;
+            
+
+        document.getElementById("result").innerHTML="Temporizador: "+horas+":"+minutos+":"+segundos;
+    },1000);
+</script>
+</html>

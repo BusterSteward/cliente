@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="result"></p>
+</body>
+<script>
+    let adivinanzas=[["¿Por qué la niña se cayó del columpio?","Porque no tenía manos"],
+                    ["¿Por qué la niña no se levantó al caerse?","Porque no tenía piernas"],
+                    ["¿Por qué nadie le ayudó a levantarse","Porque daba asco"]];
+
+    let adivinanza = Math.trunc(Math.random()*adivinanzas.length);
+    let html;
+    let res = prompt(adivinanzas[adivinanza][0]);
+    if(res==adivinanzas[adivinanza][1]){
+        html="Has acertado";
+    }
+    else{
+        html="Has fallado";
+    }
+    document.getElementById("result").innerHTML=html;
+</script>
+</html>

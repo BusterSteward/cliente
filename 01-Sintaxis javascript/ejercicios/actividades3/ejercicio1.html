@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p id="resul"></p>
+<script>
+    let p = document.getElementById("resul");
+ 
+    let num = prompt("Introduce un numero:");
+
+    let html="";
+    if(num==null){
+        alert("Error: no se ha introducido un número");
+        
+    }
+    else{
+        num= parseInt(num);
+        if(isNaN(num)){
+            alert("Error: no se ha introducido un número");
+        }
+        else if(num<0){
+            alert("Error: número menor que 0");
+        }
+        else{
+            primerPar=-1;
+
+            num%2==0 ? primerPar=num : primerPar=num-1;
+            
+            for(let i=primerPar;i>=0;i-=2){
+                html+=i+"<br>";
+            }
+        }
+
+        p.innerHTML=html;
+    }
+
+
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <p id="result"></p>
+</body>
+<script>
+    function ordenacion(a,b){return a - b}
+
+    function ordenadoAscendente(arr){
+        let copia = [...arr];
+        copia = copia.sort(ordenacion);
+        return copia.toString()==arr.toString();
+    }
+    function aNumeros(arr){
+        let numeros=[];
+        let contador=0;
+        for(let n of arr){
+            numeros[contador]=parseInt(n);
+            contador++;
+        }
+        return numeros;
+    }
+    function sonNumeros(arr){
+        for(let n of arr){
+            if(isNaN(parseInt(n))){
+                return false;
+            }
+        }
+        return true;
+    }
+    let cad=prompt("Introduce una lista de numeros separados por comas");
+    if(cad!=undefined){
+        cad=cad.trim();
+        if(cad!=""){
+            let numeros = cad.split(",");
+            if(sonNumeros(numeros)){
+                numeros = aNumeros(numeros);
+                if(ordenadoAscendente(numeros)){
+                    document.getElementById("result").innerHTML="La lista está ordenada";
+                }
+                else{
+                    document.getElementById("result").innerHTML="La lista no está ordenada";
+                }
+            }
+            else{
+                document.getElementById("result").innerHTML="Se ha introducido un valor inválido en la lista";
+            }
+        }
+        else{
+            document.getElementById("result").innerHTML="No se han introducido datos en la lista";
+        }
+    }
+    else{
+        document.getElementById("result").innerHTML="Se ha cancelado la operación";
+
+    }
+
+
+</script>
+</html>

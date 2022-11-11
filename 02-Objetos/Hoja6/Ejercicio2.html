@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <p id="result"></p>
+</body>
+<script>
+    let frase = prompt("Introduce una frase:");
+
+    if(frase!=null){
+
+
+        frase=frase.trim();
+
+        if(frase!=""){
+            let palabras = frase.split(" ");
+            
+            let tam=Math.trunc(Math.random()*201)+300;
+            let html="<p>";
+
+            palabras.forEach(element => {
+                html+=element.substring(element.length-2,element.length)+"<br>";
+            });
+            html+="</p>";
+            let subventana = window.open("","subventana","height="+tam+",width="+tam);
+            
+            subventana.document.write(html);
+        }
+        else{
+            document.getElementById("result").innerHTML="No se ha introducido nada";
+        }
+    }
+    else{
+            document.getElementById("result").innerHTML="No se ha introducido nada";
+        }
+</script>
+</html>

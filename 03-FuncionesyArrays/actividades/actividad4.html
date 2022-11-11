@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 4</title>
+</head>
+<body>
+    <p id="result"></p>
+</body>
+<script>
+    let min=500,max=0,array=[];
+
+    for(let i=0;i<15;i++){
+        array[i]=Math.trunc(Math.random()*101)+100;
+        if(max<array[i]) max=array[i];
+        if(min>array[i]) min=array[i];
+
+    }
+
+    document.getElementById("result").innerHTML="Array: "+array.toString()+"<br> Mínimo: "+min+" Máximo: "+max;
+</script>
+</html>

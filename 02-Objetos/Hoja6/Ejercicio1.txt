@@ -1,0 +1,10 @@
+
+var ventana= open("https://www.w3schools.com/js/");
+
+ventana.location.protocol -> retornará https
+ventana.location.pathName -> retornará /js/
+ventana.location.reload -> retornará undefined ya que esta funcion no devuelve nada, pero recargará la ventana
+ventana.location.protocol -> devolverá el protocolo utilizado, que es una propiedad del objeto location -> "https"
+ventana.location.pathName -> devolverá la ruta que sigue hasta el archivo -> /js
+ventana.location.reload() -> recargará la ventana en la misma localización actual, y devuelve undefined
+ventana.location ->  devolverá el objeto location del objeto ventana que es un window
