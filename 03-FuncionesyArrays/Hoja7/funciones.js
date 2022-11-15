@@ -1,6 +1,6 @@
 function comprobarCalentamientoGlobal(arr){
     let aux;
-    for(tempAnual of temperaturasAnuales){
+    for(let tempAnual of arr){
         if(aux!=undefined){
             if(aux<tempAnual){
                 aux=tempAnual;
@@ -14,11 +14,11 @@ function comprobarCalentamientoGlobal(arr){
     return true;
 }
 function calcularMediaAnual(arr){
-    suma=0;
+    let suma=0;
     let contador=0;
     let temperaturasAnuales=[];
-    for(temperatura of arr){
-        for(valor of temperatura){
+    for(let temperatura of arr){
+        for(let valor of temperatura){
             suma+=valor;
         }
         

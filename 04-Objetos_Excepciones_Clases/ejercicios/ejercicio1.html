@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let obj_palabra = {
+        palabra:"dragon",
+        longitud:function(){
+            return this.palabra.length;
+        },
+        nConsonantes:function(){
+            let consonantes=0;
+            let vocalesList="aAeEiIoOuU";
+            let aux;
+            for(let i=0;i<this.longitud();i++){
+                aux=this.palabra.charAt(i);
+                if(!vocalesList.includes(aux))
+                    consonantes++;
+            }
+            return consonantes;
+        },
+        nVocales:function(){
+            let vocales;
+            let consonantes = this.nConsonantes();
+            vocales=this.longitud()-consonantes;
+            return vocales;
+        }
+    }
+    console.log("Palabra: "+obj_palabra.palabra)
+    console.log("Longitud: "+obj_palabra.longitud())
+    console.log("Consonantes: "+obj_palabra.nConsonantes())
+    console.log("Vocales: "+obj_palabra.nVocales())
+    obj_palabra.palabra="naruto";
+    console.log("Palabra: "+obj_palabra.palabra)
+    console.log("Longitud: "+obj_palabra.longitud())
+    console.log("Consonantes: "+obj_palabra.nConsonantes())
+    console.log("Vocales: "+obj_palabra.nVocales())
+
+</script>
+</html>
+
