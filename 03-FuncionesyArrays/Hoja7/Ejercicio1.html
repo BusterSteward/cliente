@@ -52,7 +52,7 @@
     for(tempAnual of temperaturasAnuales){
         html+=tempAnual+", ";
     }
-    
+    html=html.substring(0,html.length-2);
     let html2="";
     if(comprobarCalentamientoGlobal(temperaturasAnuales)){
         html2="El calentamiento global es real, vamos a morir todos";
