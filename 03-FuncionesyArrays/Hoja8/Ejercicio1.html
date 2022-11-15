@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1 Hoja 7</title>
+</head>
+<body>
+    <p id="result"></p>
+    <p id="result2"></p>
+</body>
+
+<script type="module">
+    import{calcularMediaAnual} from "./funciones.js";
+    import{comprobarCalentamientoGlobal} from "./funciones.js";
+    let temperaturas=[];
+    temperaturas[0]=[7.2,5.8,9.2,12.1,15.4,20.1,24.8,24.6,21.1,14.4,9.8,8.5];
+    temperaturas[1]=[6,7.9,10.1,11.6,16.3,20.5,24.7,24.2,20,16.3,9.7,7.9];
+    temperaturas[2]=[6.7,10.8,9.8,12.4,17.4,20.8,24.7,25.2,19.6,14.3,11.3,7];
+    
+    
+    let temperaturasAnuales= calcularMediaAnual(temperaturas);
+
+    let html="Temperaturas anuales: ";
+    
+    for(let tempAnual of temperaturasAnuales){
+        html+=tempAnual+", ";
+    }
+    html=html.substring(0,html.length-2);
+    let html2="";
+    if(comprobarCalentamientoGlobal(temperaturasAnuales)){
+        html2="El calentamiento global es real, vamos a morir todos";
+    }
+    else{
+        html2="El calentamiento global es mentira, no problema";
+    }
+    document.getElementById("result").innerHTML=html;
+    document.getElementById("result2").innerHTML=html2;
+
+</script>
+</html>
