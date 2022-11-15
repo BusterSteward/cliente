@@ -8,26 +8,62 @@
 </head>
 <body>
     <p id="result"></p>
+    <p id="result2"></p>
 </body>
 <script>
+    function comprobarCalentamientoGlobal(arr){
+        let aux;
+        for(tempAnual of temperaturasAnuales){
+            if(aux!=undefined){
+                if(aux<tempAnual){
+                    aux=tempAnual;
+                }
+                else
+                    return false;
+            }
+            else
+                aux=tempAnual;
+        }
+        return true;
+    }
     let temperaturas=[];
     temperaturas[0]=[7.2,5.8,9.2,12.1,15.4,20.1,24.8,24.6,21.1,14.4,9.8,8.5];
     temperaturas[1]=[6,7.9,10.1,11.6,16.3,20.5,24.7,24.2,20,16.3,9.7,7.9];
     temperaturas[2]=[6.7,10.8,9.8,12.4,17.4,20.8,24.7,25.2,19.6,14.3,11.3,7];
     
     suma=0;
-    let contador2=0;
+    let contador=0;
     let temperaturasAnuales=[];
     for(temperatura of temperaturas){
         for(valor of temperatura){
             suma+=valor;
         }
         
-        temperaturasAnuales[contador2]=suma/12;
+        temperaturasAnuales[contador]=suma/12;
+        temperaturasAnuales[contador]*=100;
+        temperaturasAnuales[contador]=parseInt(temperaturasAnuales[contador]);
+        temperaturasAnuales[contador]/=100;
         suma=0;
         
-        contador2++;
+        contador++;
     }
-    console.log(temperaturasAnuales.toString());
+    let html="Temperaturas anuales: ";
+    
+    for(tempAnual of temperaturasAnuales){
+        html+=tempAnual+", ";
+    }
+    html=html.trim();
+    html=html.trim(",");
+    
+    let html2="";
+    if(comprobarCalentamientoGlobal(temperaturasAnuales)){
+        html2="El calentamiento global es real, vamos a morir todos";
+    }
+    else{
+        html2="El calentamiento global es mentira, no problema";
+    }
+    document.getElementById("result").innerHTML=html;
+    document.getElementById("result2").innerHTML=html2;
+
 </script>
 </html>
