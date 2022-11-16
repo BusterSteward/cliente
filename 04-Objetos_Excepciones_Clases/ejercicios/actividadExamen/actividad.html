@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>actividad</title>
+</head>
+<body>
+    <p id="result"></p>
+</body>
+<script>
+    function gestionarOpcion(opt,n1,n2){
+        let res;
+        switch(opt){
+            case 1:
+                res="El resultado de la suma es: "+(n1+n2);
+                break;
+            case 2:
+                res="El resultado de la resta es: "+(n1-n2);
+                break;
+            case 3:
+                res="El resultado de la multiplicación es: "+(n1*n2);
+                break;
+            case 4:
+                if(n2==0){
+                    throw new Error("No se puede dividir por 0");
+                }
+                res="El resultado de la división es: "+(n1/n2);
+                break;
+            case 5:
+                if(n2==0){
+                    throw new Error("No se puede dividir por 0");
+                }
+                res="El resultado del módulo es: "+(n1%n2);
+                break;
+            case 6:
+                res="No se ha realizado ninguna operación"
+                break;
+        }
+        return res;
+    }
+    try{
+        let option = prompt(
+            `Introduce una opción:
+            1-Suma
+            2-Resta
+            3-Multiplicación
+            4-División
+            5-Modulo
+            6-Salir`);
+        
+        option=parseInt(option);
+        if(isNaN(option)||option<1||option>6)
+            throw new Error("No se ha introducido una opción válida");
+
+        let n1 = prompt("Introduce un número:");
+        n1=parseInt(n1);
+
+        if(isNaN(n1))
+            throw new Error("No se ha introducido un número valido");
+        
+        let n2 = prompt("Introduce otro número:");
+        n2=parseInt(n2);
+
+        if(isNaN(n2))
+            throw new Error("No se ha introducido un número valido");
+        
+        let html=gestionarOpcion(option,n1,n2);
+
+        document.getElementById("result").innerHTML=html;
+    }
+    catch(exception){
+        document.getElementById("result").innerHTML=exception.toString();
+    }
+
+</script>
+</html>
