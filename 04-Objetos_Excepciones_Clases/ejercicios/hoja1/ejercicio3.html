@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="result"></p>
+</body>
+<script>
+    function Palabra(p){
+        this.palabra=p;
+        this.longitud=p.length;
+        this.nConsonantes=function(){
+            let consonantes=0;
+            let vocalesList="aAeEiIoOuU";
+            let aux;
+            for(let i=0;i<this.longitud;i++){
+                aux=this.palabra.charAt(i);
+                if(!vocalesList.includes(aux))
+                    consonantes++;
+            }
+            return consonantes;
+        }
+        this.nVocales=function(){
+            let vocales;
+            let consonantes = this.nConsonantes();
+            vocales=this.longitud-consonantes;
+            return vocales;
+        }
+    }
+    //el array contiene 31 métodos propios de los arrays
+    let array=[new Palabra("dragon"),new Palabra("naruto"),new Palabra("apocalipsis")];
+    let html="";
+    for(palabra of array){
+        html+="Palabra: "+palabra.palabra+"<br> Vocales: "+palabra.nVocales()+" Consonantes: "+palabra.nConsonantes()+"<br><br>";
+    }
+    
+    document.getElementById("result").innerHTML=html;
+</script>
+</html>
