@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+1. Diseña un script que pida información (con prompt()) sobre los datos personales de un
+alumno del grupo 2DAW: nombre, apellidos y fecha de nacimiento ('dd/mm/aaaa'). Si la
+entrada de datos no se cancela, los datos y el grupo al que pertenece el alumno se
+almacenarán en un objeto literal. La fecha de nacimiento será de tipo Date. Además, el objeto
+literal dispondrá de la funcionalidad calcularEdad().
+Una vez almacenados los datos, componer y mostrar con alert() un string con la siguiente
+información:
+"Hola nombre apellidos, tienes XXX años y perteneces al grupo 2DAW"
+ Suponemos que la fecha introducida es válida. 
+    */
+    function anyoBisiesto(a){
+        let res=false;
+        if(a%4==0){
+            res=true;
+        }
+        else if(a%100==0 && a%400==0)
+            res=true;
+
+        return res;
+    }
+   function validarFecha(cad){
+
+    let diasPorMes=[31,28,31,30,31,30,31,31,30,31,30,31];
+    let arr=cad.split("/");
+    let dia=parseInt(arr[0]);
+    let mes=parseInt(arr[1]);
+    let anyo=parseInt(arr[2]);
+    if(isNaN(dia)||isNaN(mes)||isNaN(anyo))
+        return false;
+
+    if(anyoBisiesto(anyo))
+        diasPorMes[1]++;
+    
+    if(mes<1||mes>12)
+        return false;
+    if(dia<1||dia>diasPorMes[mes-1])
+        return false;
+    
+    return true;
+   }
+
+   function formatearFecha(fecha){
+    let arr=fecha.split("/");
+    return arr[2]+"-"+arr[1]+"-"+arr[0];
+   }
+   let nombre="",apellidos="",fechaNacimiento="";
+
+   do{
+    nombre=prompt("Introduce tu nombre");
+   }while(nombre=="");
+   do{
+    apellidos=prompt("Introduce tus apellidos");
+   }while(apellidos=="");
+   do{
+    fechaNacimiento=prompt("Introduce tu fecha de nacimiento con formato (dd/mm/aaaa)");
+   }while(!validarFecha(fechaNacimiento));
+
+   fechaNacimiento=formatearFecha(fechaNacimiento);
+   
+   let informacion={
+    name:nombre,
+    surname:apellidos,
+    birthDate:new Date(fechaNacimiento),
+    calcularEdad:function(){
+        let fechaHoy=new Date();
+        return fechaHoy.getFullYear()-this.birthDate.getFullYear();
+    }
+   }
+   alert("Hola "+informacion.name +" "+informacion.surname+", tienes "+informacion.calcularEdad()+" años y perteneces al grupo 2ºDAW");
+</script>
+</html>

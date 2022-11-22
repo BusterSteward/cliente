@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <p id="result"></p>
+</body>
+<script>
+    /*
+2. Diseña la función constructora EcuacionSegundoGrado; esta función tendrá como
+propiedades los coeficientes de una ecuación de segundo grado y como método aquel que
+calcula y devuelve las dos soluciones reales (en forma de objeto literal); si la ecuación no tiene
+soluciones reales, el método devolverá NaN.
+
+Diseña un script que pida al usuario (con prompt()) los coeficientes de una ecuación de
+segundo grado y, en el caso de que los datos introducidos sean correctos, calculará y mostrará
+las soluciones (con 3 decimales) en la página HTML; en caso de error en los datos, informará
+con un alert(). Se hará uso de la función constructora diseñada.
+    */
+    function formatearNum(n){
+        let num=n*1000;
+        num=parseInt(num);
+        num/=1000;
+        return num;
+    }
+    function EcuacionSegundoGrado(c1,c2,c3){
+        this.c1=c1;
+        this.c2=c2;
+        this.c3=c3;
+
+        this.calcular = function(){
+            let solucion={
+                s1:NaN,
+                s2:NaN
+            };
+            
+
+            let pow = Math.pow(c2,2);
+            let cuatroac = 4*c1*c3;
+            let D = pow-cuatroac;
+
+            if(D>=0){
+                let sqrt=Math.sqrt(D);
+                let dividendo = -c2+sqrt;
+                let divisor = 2*c1;
+                solucion.s1=formatearNum(dividendo/divisor);
+                if(D>0){
+                    let dividendo2 = -c2-sqrt;
+                    solucion.s2=formatearNum(dividendo2/divisor);
+                }
+                return solucion;
+            }
+            else
+                return NaN;
+            
+        }
+    }
+
+    let c1,c2,c3;
+
+    try{
+        c1=prompt("Introduce el primer coeficiente:");
+        c1=parseInt(c1);
+        if(isNaN(c1))
+            throw(new Error("El coeficiente no es válido"));
+        if(c1==0)
+            throw new Error("Los coeficientes no se corresponden con una ecuación de segundo grado");
+
+        c2=prompt("Introduce el segundo coeficiente:");
+        c2=parseInt(c2);
+        if(isNaN(c2))
+            throw(new Error("El coeficiente no es válido"));
+
+        c3=prompt("Introduce el tercer coeficiente:");
+        c3=parseInt(c3);
+        if(isNaN(c3))
+            throw(new Error("El coeficiente no es válido"));
+        
+        let ecuacion = new EcuacionSegundoGrado(c1,c2,c3);
+
+        let respuesta=ecuacion.calcular();
+        let html="Ecuación: "+ecuacion.c1+"x^2 ";
+        if(c2>=0)
+            html+="+";
+        html+=ecuacion.c2+"x ";
+        if(c3>=0)
+            html+="+";
+        html+=ecuacion.c3+" = 0<br><br>";
+        if(isNaN(respuesta.s1)){
+            
+            
+            html+="La ecuación no tiene solución";
+        }
+        else{
+            if(isNaN(respuesta.s2)){
+                html+="La única solución de la ecuación es "+respuesta.s1;
+            }
+            else{
+                html+="La primera solución de la ecuación es "+respuesta.s1+"<br>La segunda solución de la ecuación es "+respuesta.s2;
+            }
+        }
+
+        document.getElementById("result").innerHTML=html;
+    }
+    catch(err){
+        alert(err);
+    }
+    
+</script>
+</html>
