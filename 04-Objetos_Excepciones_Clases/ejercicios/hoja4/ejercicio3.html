@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    <p id="result"></p>
+</body>
+<script type="module">
+    import{Alumno} from "./JS/alumno.js";
+    /*
+3. Diseña un script que pida al usuario (con prompt()) el nombre y apellidos de un alumno, su
+DNI/NIE y las asignaturas y calificaciones de las que está matriculado; la información sobre
+asignaturas y calificaciones se debe introducir con el siguiente formato: “nombreAsignatura:
+calificación;nombreAsignatura:calificación;…”. Los datos del alumno se mostrarán en una
+página HTML; pasados 2 segundos, se mostrará la nota media (en el caso de que los datos sean
+correctos).
+ Suponemos que no se cancela ninguna entrada de datos. 
+    */
+
+    let nombre=prompt("Introduce tu nombre");
+    let apellidos=prompt("Introduce tus apellidos");
+    let id=prompt("Introduce tu DNI o NIE");
+    try{
+        let alumno=new Alumno(nombre,apellidos,id);
+        let nAsignaturas=prompt("¿En cuantas asignaturas te has matriculado?");
+        
+        nAsignaturas=parseInt(nAsignaturas);
+        if(!isNaN(nAsignaturas)&&nAsignaturas>0){
+            let nombreAsignatura,calificacion;
+            for(let i=0;i<nAsignaturas;i++){
+                nombreAsignatura=prompt("Introduce el nombre de la asignatura");
+                calificacion=prompt("Introduce tu nota");
+                calificacion=parseFloat(calificacion);
+                alumno.setAsignaturaCalificacion(nombreAsignatura,calificacion);
+            }
+        }
+        let html=alumno.dameInfo();
+        result.innerHTML=html;
+
+    }
+    catch(error){
+        result.innerHTML=error;
+    }
+    
+
+        
+</script>
+</html>

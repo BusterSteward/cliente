@@ -1,9 +1,9 @@
 function verificarDNI(dni){
-        
-    const ABC="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+    
+    const ABC="TRWAGMYFPDXBNJZSQVHLCKE";
     //14312821J
     let letra=dni.charAt(8);
-    let num=dni.substring(0,7);
+    let num=dni.substring(0,8);
     num=parseInt(num);
 
     if(isNaN(num))
@@ -32,14 +32,14 @@ function valorDeLetra(letra){
 }
 function verificarNIE(nie){
 
-    const ABC="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+    const ABC="TRWAGMYFPDXBNJZSQVHLCKE";
 
     let letra1=nie.charAt(0);
 
     if(letra1!="X"&&letra1!="Y"&&letra1!="Z")
         return false;
 
-    let num=nie.substring(1,7);
+    let num=nie.substring(1,8);
     num=parseInt(num);
 
     if(isNaN(num))
@@ -57,13 +57,17 @@ function verificarNIE(nie){
 }
 
 export function Alumno(nombre,apellidos,id){
-    if(id.length!=8 || !verificarDNI(id)&&!verificarNIE(id))
+    let dni=verificarDNI(id);
+    let nie=verificarNIE(id);
+    if(id.length!=9 || !dni&&!nie){
         throw new Error("El documento de identidad no es válido");
+    }
+    
     this.nombre=nombre;
     this.apellidos=apellidos;
     this.id=id;
     this.expediente=new Array();
-    this.setAsignaturaCalificacion=function(asig,cali){
+    this.__proto__.setAsignaturaCalificacion=function(asig,cali){
         if(isNaN(cali)||cali==="")
             throw new TypeError("La calificación no es numérica");
 
@@ -73,7 +77,7 @@ export function Alumno(nombre,apellidos,id){
         };
         this.expediente.push(literal);
     }
-    this.calcularNotaMedia()=function(){
+    this.__proto__.calcularNotaMedia=function(){
         let suma=0;
         
         if(this.expediente.length!=0){
@@ -88,8 +92,21 @@ export function Alumno(nombre,apellidos,id){
         return media;
         }
         else
-            throw new Error("No se puede calcular la nota media, no hay notas");
-        
-        
+            throw new Error("No se puede calcular la nota media, no hay notas");  
     }
+    this.__proto__.dameInfo=function(){
+        let html="";
+        html+="Nombre: "+this.nombre+"<br>";
+        html+="Apellidos: "+this.apellidos+"<br>";
+        html+="Identificación: "+this.id+"<br><br>";
+        html+="Expediente: <br>";
+        this.expediente.forEach((asig)=>{
+            html+="-Asignatura: "+asig.asignatura+" Nota: "+asig.calificacion+"<br>";
+        });
+        html+="<br>";
+        let media=this.calcularNotaMedia();
+        html+="Nota media: "+media;
+        return html;
+    }
+
 }  
