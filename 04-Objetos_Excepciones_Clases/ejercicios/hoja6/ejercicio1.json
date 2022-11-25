@@ -1,0 +1,33 @@
+{
+    "libros":
+    [
+        {
+            "Código":1,
+            "Título":"Java 8",
+            "Autor":"HERBERT SCHILDT",
+            "Editorial":"Anaya Multimedia",
+            "AñoDePublicación":2014
+        },
+        {
+            "Código":2,
+            "Título":"DISEÑO WEB CON HTML5 Y CSS3",
+            "Autor":"TORRES REMON MANUEL ÁNGEL",
+            "Editorial":"MARCOMBO,S.A.,",
+            "AñoDePublicación":2016
+        },
+        {
+            "Código":3,
+            "Título":"JAVASQRIPT JQUERY(3ª ED.)",
+            "Autor":"DAVID SAWYER MACFARLAND",
+            "Editorial":"ANAYA MULTIMEDIA",
+            "AñoDePublicación":2015
+        },
+        {
+            "Código":4,
+            "Título":"BASES DE DATOS. DISEÑO Y GESTION",
+            "Autor":"ARTURO MORA RIOJA",
+            "Editorial":"SINTESIS",
+            "AñoDePublicación":2014
+        }
+    ]  
+}

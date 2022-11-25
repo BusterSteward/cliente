@@ -1,0 +1,31 @@
+{
+    "nombre":"Pedro",
+    "apellidos":"Rosales García",
+    "numeroDeExpediente":"120-2020",
+    "fechaDeNacimiento":"10/10/1999",
+    "seguroEscolar":true,
+    "asignaturas":
+    [
+        {
+            "NombreAsignatura":"Bases de datos",
+            "CodigoAsignatura":"BD01",
+            "Calificacion":8
+        },
+        {
+            "NombreAsignatura":"Programación",
+            "CodigoAsignatura":"PR02",
+            "Calificacion":8.5
+        },
+        {
+            "NombreAsignatura":"HTML y CSS",
+            "CodigoAsignatura":"HC03",
+            "Calificacion":7
+        },
+        {
+            "NombreAsignatura":"Servidores web",
+            "CodigoAsignatura":"SW04",
+            "Calificacion":6.5
+        }
+    ]
+    
+}

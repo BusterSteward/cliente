@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <p id="local"></p>
+    <p id="session"></p>
+</body>
+    <script>
+        let nombre=prompt("Introduce tu nombre");
+        let fecha= new Date();
+        let htmlLocal="";
+        let htmlSesion="";
+        if(localStorage[nombre]==undefined){
+            
+            localStorage[nombre]=fecha;
+        }
+        else{
+            localStorage[nombre]+=fecha;
+        }
+        if(sessionStorage[nombre]==undefined){     
+            sessionStorage[nombre]=fecha;
+        }
+        else{
+            sessionStorage[nombre]+=fecha;
+        }
+        console.log(localStorage[nombre]);
+        htmlLocal+="Nombre: "+nombre+"<br>";
+        localStorage[nombre].forEach(f => {
+            htmlLocal+="Fecha: "+f;
+        });
+        htmlSesion+="Nombre: "+nombre+"<br>";
+        sessionStorage[nombre].forEach(f => {
+            htmlSesion+="Fecha: "+f;
+        });
+        local.innerHTML=htmlLocal;
+        session.innerHTML=htmlSesion;
+    </script>
+</html>

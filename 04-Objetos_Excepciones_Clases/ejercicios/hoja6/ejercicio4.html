@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 4</title>
+</head>
+<body>
+    <p id="result"></p>
+</body>
+<script>
+    let alumno = {
+        "nombre":"Pedro",
+        "apellidos":"Rosales García",
+        "numeroDeExpediente":"120-2020",
+        "fechaDeNacimiento":"10/10/1999",
+        "seguroEscolar":true,
+        "asignaturas":
+        [
+            {
+                "NombreAsignatura":"Bases de datos",
+                "CodigoAsignatura":"BD01",
+                "Calificacion":8
+            },
+            {
+                "NombreAsignatura":"Programación",
+                "CodigoAsignatura":"PR02",
+                "Calificacion":8.5
+            },
+            {
+                "NombreAsignatura":"HTML y CSS",
+                "CodigoAsignatura":"HC03",
+                "Calificacion":7
+            },
+            {
+                "NombreAsignatura":"Servidores web",
+                "CodigoAsignatura":"SW04",
+                "Calificacion":6.5
+            }
+        ]
+    }
+
+    let html=`Nombre del alumno: ${alumno.nombre} ${alumno.apellidos}<br>
+    Expediente: ${alumno.numeroDeExpediente}<br>
+    Fecha de nacimiento: ${alumno.fechaDeNacimiento}<br>
+    Seguro escolar: `;
+    alumno.seguroEscolar ? html+="Sí<br><br>" : html+="No<br><br>";
+    html+="Asignaturas:<br>";
+    alumno.asignaturas.forEach(asignatura =>{
+        html+=`Asignatura: ${asignatura.NombreAsignatura} (${asignatura.CodigoAsignatura}) Nota: ${asignatura.Calificacion}<br>`;
+    });
+
+    result.innerHTML=html;
+</script>
+</html>

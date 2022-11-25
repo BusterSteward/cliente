@@ -35,7 +35,12 @@ correctos).
                 nombreAsignatura=prompt("Introduce el nombre de la asignatura");
                 calificacion=prompt("Introduce tu nota");
                 calificacion=parseFloat(calificacion);
-                alumno.setAsignaturaCalificacion(nombreAsignatura,calificacion);
+                try{
+                    alumno.setAsignaturaCalificacion(nombreAsignatura,calificacion);
+                }
+                catch(error){
+                    alert(error);
+                }
             }
         }
         let html=alumno.dameInfo();
