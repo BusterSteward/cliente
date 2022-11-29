@@ -12,30 +12,74 @@
 </body>
     <script>
         let nombre=prompt("Introduce tu nombre");
+
         let fecha= new Date();
-        let htmlLocal="";
-        let htmlSesion="";
-        if(localStorage[nombre]==undefined){
+        let anyo,mes,dia,horas,minutos,segundos;
+        anyo=fecha.getFullYear();
+        mes=fecha.getMonth();
+        dia=fecha.getDay();
+        horas=fecha.getHours();
+        minutos= fecha.getMinutes();
+        segundos= fecha.getSeconds();
+        if(horas<10)
+            horas="0"+horas;
+        if(minutos<10)
+            minutos="0"+minutos;
+        if(segundos<10)
+            segundos="0"+segundos;
+        let str_fecha=dia+"/"+mes+"/"+anyo+" "+horas+":"+minutos+":"+segundos;
+
+        
+        let htmlLocal="LocalStorage:<br>";
+        let htmlSesion="SessionStorage:<br>";
+        let json;
+        if(localStorage.getItem(nombre)==undefined){
+            json =
+            {
+            "fechas":[str_fecha],
+            "nombre":nombre
+            };
             
-            localStorage[nombre]=fecha;
         }
         else{
-            localStorage[nombre]+=fecha;
+            json=JSON.parse(localStorage.getItem(nombre));
+            let arr=json.fechas;
+            arr.push(str_fecha);
+            json.fechas=arr;
+            
         }
-        if(sessionStorage[nombre]==undefined){     
-            sessionStorage[nombre]=fecha;
+        localStorage.setItem(nombre,JSON.stringify(json));
+        
+        if(sessionStorage.getItem(nombre)==undefined){   
+             json =
+            {
+            "fechas":[str_fecha],
+            "nombre":nombre
+            };  
+            
         }
         else{
-            sessionStorage[nombre]+=fecha;
+            json=JSON.parse(sessionStorage.getItem(nombre));
+            let arr=json.fechas;
+            arr.push(str_fecha);
+            json.fechas=arr;
         }
-        console.log(localStorage[nombre]);
-        htmlLocal+="Nombre: "+nombre+"<br>";
-        localStorage[nombre].forEach(f => {
-            htmlLocal+="Fecha: "+f;
+        
+        sessionStorage.setItem(nombre,JSON.stringify(json));
+        
+        
+        htmlLocal+="Nombre: "+nombre+"<br>Registro de conexiones:<br>";
+        json=JSON.parse(localStorage.getItem(nombre));
+        let fechasLocal=json.fechas;
+        fechasLocal.forEach(f => {
+            htmlLocal+="Fecha: "+f+"<br>";
         });
-        htmlSesion+="Nombre: "+nombre+"<br>";
-        sessionStorage[nombre].forEach(f => {
-            htmlSesion+="Fecha: "+f;
+        
+        htmlSesion+="Nombre: "+nombre+"<br>Registro de conexiones:<br>";
+        json=JSON.parse(sessionStorage.getItem(nombre));
+        let fechasSession = json.fechas;
+        fechasSession.forEach(f => {
+            htmlSesion+="Fecha: "+f+"<br>";
         });
         local.innerHTML=htmlLocal;
         session.innerHTML=htmlSesion;

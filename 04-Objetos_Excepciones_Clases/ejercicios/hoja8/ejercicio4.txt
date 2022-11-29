@@ -1,0 +1,5 @@
+﻿4. ¿Qué devuelve el método valueOf() en las instancias de Alumno()? ¿Cómo se podría
+redefinir?
+
+Devuelve un objeto alumno con los valores de esa instancia.
+Para redefinirlo habria que modificarlo en la propiedad __proto__.valueOf() del objeto alumno.

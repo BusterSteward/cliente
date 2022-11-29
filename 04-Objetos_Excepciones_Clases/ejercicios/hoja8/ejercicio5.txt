@@ -1,0 +1,7 @@
+﻿5. ¿Qué propiedades tiene el objeto global Function? ¿A qué versión de ES pertenecen cada
+uno de ellas? 
+-Arguments:
+-Caller:
+-DisplayName:
+-Length:
+-Name:
