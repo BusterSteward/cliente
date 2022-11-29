@@ -1,7 +1,25 @@
 ﻿5. ¿Qué propiedades tiene el objeto global Function? ¿A qué versión de ES pertenecen cada
 uno de ellas? 
+
 -Arguments:
+Es un array que corresponde con los argumentos que se le pasan por parámetro a la función, ya no
+se recomienda su uso, en su lugar está el objeto Arguments disponible dentro de la función.
+
 -Caller:
+Especifica la función desde la que se invocó a la función que contiene el caller. Si fue llamada
+desde el mayor ámbito del código, su valor es null. Tambien está desfasado.
+
 -DisplayName:
--Length:
--Name:
+The displayName property is not initially present on any function 
+it's added by the code authors. 
+If present, it may be preferred by consoles and profilers over the name property to be displayed as the name of a function
+
+-Length: 
+Especifica el numero de argumentos de la funcion
+
+-Name: 
+especifica el nombre asignado a la funcion
+
+-prototype: 
+cuando la funcion es utilizada como constructora con un new. 
+Se convertirá en el prototipo del objeto instanciado
