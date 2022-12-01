@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="result"></p>
+</body>
+<script>
+    //opcion de desarrollo 3
+
+    //parte 1
+    let password= prompt("Introduce tu contraseña, entre 5 y 10 caracteres");
+
+    let digitos=0,caracteres=0;
+    let caracterProhibido;
+    
+    if(password.length>5&&password.length<10){
+        for(let i=0;i<password.length;i++){
+            let letra= password.charAt(i);
+            if(letra==" "||letra=="@"){
+                caracterProhibido=true;
+                break;
+            }
+            else if(isNaN(parseInt(letra))){
+                caracteres++;
+            }
+            else{
+                digitos++;
+            }
+        }
+
+        if(caracterProhibido)
+            alert("contraseña inválida");
+        else if(digitos==0||digitos==0){
+            alert("contraseña inválida");
+        }
+        else{
+            let contador=0;
+            result.innerHTML="";
+            let idInterval=setInterval(()=>{
+                if(contador==password.length){
+                    clearInterval(idInterval);
+                    //parte 2
+                    let tam=500;
+                    
+                    let dia,mes,anyo;
+                    diasPorMes=[31,28,31,30,31,30,31,31,30,31,30,31];
+                    mes=Math.trunc(Math.random()*12+1);
+                    anyo=Math.trunc(Math.random()*23+2000);
+                    dia=Math.trunc(Math.random()*diasPorMes[mes-1]+1);
+                    
+                    if(dia<10)
+                        dia="0"+dia;
+                    if(mes<10)
+                        mes="0"+mes;
+                    let date = new Date(anyo+"/"+mes+"/"+dia);
+
+                    html=date;
+
+                    //parte 3
+                    let milisec = date.getTime();
+                   
+                    let str_milisec = milisec+"";
+                    let retardo=0;
+                    for(let i=0;i<str_milisec.length;i++){
+                        let digito=parseInt(str_milisec.charAt(i));
+                        if(digito%2!=0){
+                            retardo+=digito;
+                        }
+                    }
+                    
+                    setTimeout(()=>{
+                        let subventana = window.open("","subventana","height="+tam+",width="+tam);
+                        subventana.document.write(html);
+                    },(retardo*1000));
+                    
+
+                }
+                else{
+                    result.innerHTML+=password.charAt(contador);
+                    contador++;
+                }
+            },500);
+        }
+    }
+    else
+        alert("contraseña inválida");
+</script>
+</html>

@@ -125,7 +125,5 @@ export function Alumno(nombre,apellidos,id){
         finally{
             return html;
         }
-        
     }
-
 }  

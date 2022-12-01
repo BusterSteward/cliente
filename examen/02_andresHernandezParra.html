@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="result"></p>
+</body>
+<script>
+    //Opcion de desarrollo 3
+
+    //parte 1
+    function generarCodigo(nombre,fechaNac,fechaAlta){
+        let cod="";
+
+        //paso 1:primeras consonantes del nombre
+        const CONSONANTES="BCDFGHJKLMNÑPQRSTVWXYZ";
+        let char;
+        for(let i=0;i<nombre.length;i++){
+            char=nombre.charAt(i);
+            char=char.toUpperCase();
+            if(CONSONANTES.indexOf(char)>=0){
+                cod+=char;
+            }
+            if(cod.length==2)
+                break;
+        }
+        while(cod<2)
+            cod+="X";
+        //paso 2: 2 ultimos digitos del año de nacimiento y los dos digitos del mes
+
+        let arrFechaNac = fechaNac.split("/");
+        let anyo=arrFechaNac[2];
+        let mes=arrFechaNac[1];
+        
+        let digitosAnyo = anyo.substring(2);
+        cod+=digitosAnyo;
+        cod+=mes;
+
+        //paso 3: suma del dia de nacimiento y el dia de fecha de alta
+        let arrFechaAlta=fechaAlta.split("/");
+        let diaNac=arrFechaNac[0];
+        let diaAlta=arrFechaAlta[0];
+
+        cod+=(parseInt(diaNac)+parseInt(diaAlta));
+        //paso 4: suma de todos los digitos que contiene la clave
+        let suma=0;
+        let digitosClave=cod.substring(2);
+        for(let i=0;i<digitosClave.length;i++){
+            suma+=parseInt(digitosClave.charAt(i));
+        }
+        cod+="-"+suma;
+        
+        return cod;
+    }
+    //parte 2
+    function Futbolista(nombre,fechaNac,fechaAlta,codigo){
+        if(codigo!=generarCodigo(nombre,fechaNac,fechaAlta))
+            throw new Error("El código no es correcto");
+        this.nombre=nombre;
+        this.fechaNacimiento=fechaNac;
+        this.fechaAlta=fechaAlta;
+        this.codigo=codigo;
+        
+        //parte 3
+        this.__proto__.getAntiguedad=function(){
+            let fechaHoy=new Date();
+            let arrFechaAlta=this.fechaAlta.split("/");
+
+            let fechaAlta=new Date(arrFechaAlta[2]+"/"+arrFechaAlta[1]+"/"+arrFechaAlta[0]);
+
+            let milisecHoy,milisecAlta;
+            milisecAlta=fechaAlta.getTime();
+            milisecHoy=fechaHoy.getTime();
+            
+            let antiguedad=milisecHoy-milisecAlta;
+            //milisegundos -> segundos -> minutos       -> horas                -> dias
+            //      x           x/1000   (x/1000)/60    ((x/1000)/60)/60    (((x/1000)/60)/60)/24
+            antiguedad=(((antiguedad/1000)/60)/60)/24;
+            antiguedad=parseInt(antiguedad);
+            return antiguedad;
+        }
+    }
+
+    //prueba de generarCodigo()
+
+    //nombre Buster -> BS
+    //fechaNacimiento 24/06/1997 -> 9706
+    //la fecha de alta sera el 1 de enero de este año ->01/01/2022
+    //suma diaNac + diaAlta -> 24+01= 25
+    //suma de digitos -> 9+7+0+6+2+5= 29
+    //codigo resultante -> BS970625-29
+
+    console.log(generarCodigo("Buster","24/06/1997","01/01/2022"));
+
+    try{
+        let f1 = new Futbolista("Buster","24/06/1997","01/01/2022","BS970625-29");
+        result.innerHTML=`futbolista creado con exito<br>
+                         Nombre: ${f1.nombre}<br>
+                         Fecha de nacimiento: ${f1.fechaNacimiento}<br>
+                         Fecha de alta: ${f1.fechaAlta}<br>
+                         Código: ${f1.codigo}<br>
+                         Antigüedad: ${f1.getAntiguedad()}`
+    }
+    catch(error){
+        result.innerHTML=error;
+    }
+
+
+
+</script>
+</html>
