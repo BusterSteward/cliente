@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="funciones.js"></script>
+</head>
+<body>
+    <p id="result"></p>
+    <p id="antiguo"></p>
+    <p id="locStr"></p>
+</body>
+<script>
+    //opcion de desarrollo 5
+    let equipo = new Equipo();
+
+    equipo.setFutbolista("Carlos","04/12/1981","20/11/2021","CR81126-18");
+    equipo.setFutbolista("Luisa","25/01/1980","01/01/2010","LS800126-17");
+    equipo.setFutbolista("Ana","04/12/1980","31/10/2021","N801235-19");
+    equipo.setFutbolista("Roberto","10/12/1990","31/11/2020","B901240-16");
+
+    //he añadido uno que si que cumpla la condicion de baja antigüedad
+    equipo.setFutbolista("Buster","24/06/1997","01/12/2022","BS970625-29");
+    
+    //descomentar esta linea para comprobar que se añade al localStorage despues de la primera ejecucion
+    //equipo.setFutbolista("andres","24/06/1997","01/12/2022","AN970625-29");
+
+    let nuevos = equipo.getBajaAntiguedad();
+    
+    let masAntiguo=equipo.getFutbolistaMasAntiguo();
+
+    let localNuevos = localStorage.getItem("Baja");
+    if(localNuevos!=undefined){
+        localNuevos=JSON.parse(localNuevos);
+
+        //trato de añadir cada uno de los jugadores con baja antigüedad al local storage
+        nuevos.forEach(nuevo => {
+            let noestoy=true;
+            localNuevos.forEach(localNuevo=>{ //comparo los jugadores con cada uno de los valores que ya se encuentran en el local storage
+                if(localNuevo.codigo==nuevo.codigo){
+                    noestoy=false;
+                }
+            });
+            //si no encuentro el jugador en el local storage, lo añado
+            if(noestoy)
+                localNuevos.push(nuevo);
+        });
+        localStorage.setItem("Baja",JSON.stringify(localNuevos));
+    }
+    else{
+        localStorage.setItem("Baja",JSON.stringify(nuevos));
+    }
+    
+    result.innerHTML="Equipo: "+equipo.toString();
+    antiguo.innerHTML="El jugador mas antiguo es "+masAntiguo.nombre;
+    locStr.innerHTML="LocalStorage:<br>"+localStorage.getItem("Baja");
+    
+</script>
+</html>
