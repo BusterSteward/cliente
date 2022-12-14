@@ -3,7 +3,13 @@
     this.apellido=a;
     this.posicion=p;
 }
-
+class Partido{
+    constructor(eq1,eq2){
+        this.resultado=null;
+        this.equipo1=eq1;
+        this.equipo2=eq2;
+    }
+}
 class Equipo{
     constructor(n,e){
         this.futbolistas=[];
@@ -24,6 +30,7 @@ class Mundial{
     constructor(){
         this.equipos=[];
         this.grupos=[];
+        this.fasePrevia=[];
     }
     setEquipo(e){
         this.equipos.push(e);
@@ -45,6 +52,16 @@ class Mundial{
             }
         }
 
+    }
+    generarFasePrevia(){
+        for(let i=0;i<this.grupos.length;i++){
+            this.fasePrevia[i]=[];
+            for(let j=0;j<this.grupos[i].length;j++){
+                for(let z=j+1;z<this.grupos[i].length;z++){
+                    this.fasePrevia[i].push(new Partido(this.grupos[i][j],this.grupos[i][z]));
+                }
+            }
+        }
     }
 
     //Inicio
