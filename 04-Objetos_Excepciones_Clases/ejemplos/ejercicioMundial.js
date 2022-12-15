@@ -126,17 +126,37 @@ class Mundial{
             for(let j=0;j<this.fasePrevia[i].length;j++){
                 let partido=this.fasePrevia[i][j];
                 partido.jugarPartido();
-                
+                console.log(partido.getResultado());
             }
         }
         //obtenemos clasificación
+        this.clasificarGrupos();
+        console.log(this.grupos);
+        
+    }
+    clasificarGrupos(){
+        
         for(let i=0;i<this.grupos.length;i++){
-            for(let j=0;j<this.grupos[i].length;j++){
+            this.grupos[i].sort((a,b)=>{
+                //  1 -> b gana
+                // -1 -> a gana
+                let res;
+                //compruebo los puntos de cada equipo
+                if(a.puntosFasePrevia==b.puntosFasePrevia){
+                    //compruebo los goles que han marcado
+                    if(a.golesFavor==b.golesFavor){
+                        //compruebo los goles que les han marcado
+                        a.golesContra<=b.golesContra ? res=-1 : res=1; 
+                    }
+                    else a.golesFavor>b.golesFavor ? res=-1 : res=1;
+                    
+                }
+                else a.puntosFasePrevia>b.puntosFasePrevia ? res=-1 : res=1;
 
-            }
+                return res;
+            });
         }
     }
-
     //Inicio
     inicio(){
         //generaGrupos
