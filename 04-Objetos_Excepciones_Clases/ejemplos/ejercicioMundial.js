@@ -4,10 +4,66 @@
     this.posicion=p;
 }
 class Partido{
-    constructor(eq1,eq2){
-        this.resultado=null;
+    constructor(eq1,eq2,fase){
+        this.marcadorA=null;
+        this.marcadorB=null;
         this.equipo1=eq1;
         this.equipo2=eq2;
+        this.fase=fase;
+        this.jugado=false;
+        this.penaltis=false;
+    }
+    jugarPartido(){
+        if(!this.jugado){
+            this.marcadorA=Math.trunc(Math.random()*6);
+            this.marcadorB=Math.trunc(Math.random()*6);
+            this.equipo1.golesFavor+=this.marcadorA;
+            this.equipo1.golesContra+=this.marcadorB;
+            this.equipo2.golesFavor+=this.marcadorB;
+            this.equipo2.golesContra+=this.marcadorA;
+            this.jugado=true;
+            
+        }
+        return this.getEquipoGanador();
+        
+    }
+    getResultado(){
+        return this.equipo1.nombre+" "+this.marcadorA+" - "+this.marcadorB+" "+this.equipo2.nombre+" Penaltis: "+this.penaltis;
+    }
+    getEquipoGanador(){
+        if(this.jugado){
+            let ganador=[];
+            if(this.marcadorA==this.marcadorB&&this.fase!=0){
+                ganador.push(this.jugarPenaltis());
+            }
+            else if(this.marcadorA==this.marcadorB&&this.fase==0){
+                this.equipo1.puntosFasePrevia++;
+                this.equipo2.puntosFasePrevia++;
+                ganador.push(this.equipo1);
+                ganador.push(this.equipo2);
+            }
+            else if(this.marcadorA>this.marcadorB){
+                this.equipo1.puntosFasePrevia+=3;
+                ganador.push(this.equipo1);
+            }
+            else{
+                this.equipo2.puntosFasePrevia+=3;
+                ganador.push(this.equipo2);
+            }
+            return ganador;
+        }
+        
+    }
+    jugarPenaltis(){
+        this.penaltis=true;
+        if(Math.random()>0.5){
+            this.marcadorA++;
+            return this.equipo1;
+        } 
+        else{
+            this.marcadorB++;
+            return this.equipo2;
+        } 
     }
 }
 class Equipo{
@@ -15,6 +71,9 @@ class Equipo{
         this.futbolistas=[];
         this.entrenador=e;
         this.nombre=n;
+        this.puntosFasePrevia=0;
+        this.golesFavor=0;
+        this.golesContra=0;
     }
 
     setFutbolista(futbolista){
@@ -51,15 +110,29 @@ class Mundial{
                 equipoAux.splice(indice,1);
             }
         }
-
     }
     generarFasePrevia(){
+        //generamos partidos
         for(let i=0;i<this.grupos.length;i++){
             this.fasePrevia[i]=[];
             for(let j=0;j<this.grupos[i].length;j++){
                 for(let z=j+1;z<this.grupos[i].length;z++){
-                    this.fasePrevia[i].push(new Partido(this.grupos[i][j],this.grupos[i][z]));
+                    this.fasePrevia[i].push(new Partido(this.grupos[i][j],this.grupos[i][z],0));
                 }
+            }
+        }
+        //jugamos los partidos
+        for(let i=0;i<this.fasePrevia.length;i++){
+            for(let j=0;j<this.fasePrevia[i].length;j++){
+                let partido=this.fasePrevia[i][j];
+                partido.jugarPartido();
+                
+            }
+        }
+        //obtenemos clasificación
+        for(let i=0;i<this.grupos.length;i++){
+            for(let j=0;j<this.grupos[i].length;j++){
+
             }
         }
     }
