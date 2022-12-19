@@ -24,7 +24,7 @@ class Partido{
             this.jugado=true;
             
         }
-        return this.getEquipoGanador();
+        
         
     }
     getResultado(){
@@ -90,6 +90,10 @@ class Mundial{
         this.equipos=[];
         this.grupos=[];
         this.fasePrevia=[];
+        this.octavos=[];
+        this.cuartos=[];
+        this.semis=[];
+        this.final=null;
     }
     setEquipo(e){
         this.equipos.push(e);
@@ -134,6 +138,43 @@ class Mundial{
         console.log(this.grupos);
         
     }
+    generarOctavos(){
+
+        for(let i=0;i<this.grupos.length-1;i+=2){
+            this.octavos.push(new Partido(this.grupos[i][0],this.grupos[i+1][1],8));
+            this.octavos.push(new Partido(this.grupos[i][1],this.grupos[i+1][0],8))
+        }
+        for(let i=0;i<this.octavos.length;i++){
+            this.octavos[i].jugarPartido();
+        }
+
+        console.log(this.octavos);
+    }
+    generarCuartos(){
+
+        this.cuartos.push(new Partido(this.octavos[0].getEquipoGanador()[0],this.octavos[1].getEquipoGanador()[0],4));
+        this.cuartos.push(new Partido(this.octavos[2].getEquipoGanador()[0],this.octavos[3].getEquipoGanador()[0],4));
+        this.cuartos.push(new Partido(this.octavos[4].getEquipoGanador()[0],this.octavos[5].getEquipoGanador()[0],4));
+        this.cuartos.push(new Partido(this.octavos[6].getEquipoGanador()[0],this.octavos[7].getEquipoGanador()[0],4));
+        for(let i=0;i<this.cuartos.length;i++){
+            this.cuartos[i].jugarPartido();
+        }
+
+        console.log(this.cuartos);
+    }
+    generarSemis(){
+        this.semis.push(new Partido(this.cuartos[0].getEquipoGanador()[0],this.cuartos[1].getEquipoGanador()[0],2));
+        this.semis.push(new Partido(this.cuartos[2].getEquipoGanador()[0],this.cuartos[3].getEquipoGanador()[0],2));
+        this.semis[1].jugarPartido();
+        this.semis[0].jugarPartido();
+
+        console.log(this.semis);
+    }
+    generarFinal(){
+        this.final = new Partido(this.semis[0].getEquipoGanador()[0],this.semis[1].getEquipoGanador()[0],1);
+        this.final.jugarPartido();
+        console.log(this.final);
+    }
     clasificarGrupos(){
         
         for(let i=0;i<this.grupos.length;i++){
@@ -149,7 +190,6 @@ class Mundial{
                         a.golesContra<=b.golesContra ? res=-1 : res=1; 
                     }
                     else a.golesFavor>b.golesFavor ? res=-1 : res=1;
-                    
                 }
                 else a.puntosFasePrevia>b.puntosFasePrevia ? res=-1 : res=1;
 
@@ -159,17 +199,18 @@ class Mundial{
     }
     //Inicio
     inicio(){
-        //generaGrupos
-        generarGrupos();
-        //enfrentamientos
-        this.gruposToString(grupos);
-        //generarOctavos
-        //enfrentamientos
-        //generarCuartos
-        //enfrentamientos
-        //generarSemifinales
-        //enfrentamientos
-        //final
+        
+        this.generarGrupos();
+        
+        this.generarFasePrevia();
+
+        this.generarOctavos();
+
+        this.generarCuartos();
+        
+        this.generarSemis();
+
+        this.generarFinal();
 
     }
     gruposToString(){

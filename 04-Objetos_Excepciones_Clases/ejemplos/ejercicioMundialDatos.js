@@ -11,6 +11,4 @@ var qatar2022=new Mundial();
 for(let i=0;i<32;i++){
     qatar2022.setEquipo(equipos[i]);
 }
-qatar2022.generarGrupos();
-console.log(qatar2022.gruposToString());
-qatar2022.generarFasePrevia();
+qatar2022.inicio();
