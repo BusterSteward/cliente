@@ -1,0 +1,304 @@
+<html>
+<head>
+<title>Juego Secuencia</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<!-- ******************************************************************** -->
+<!-- ******************************************************************** -->
+<script languaje="JavaScript">
+
+var reloj;
+var seguir=true;
+
+var imagenes=new Array();
+var posiciones=new Array();
+
+var njugadas=0;
+
+var numeroquetoca=1;
+
+var tocando1;
+var tocando2;
+
+//************************************************************************
+//************************************************************************
+function inicio()
+{
+		
+		//sonido PULSAR
+		tocando1 = document.getElementById('musica');
+		//sonido PREMIO
+		tocando2 = document.getElementById('musica2');		
+
+		
+		
+		// valor del inicio de secuencia
+		numeroquetoca=1;
+
+		// nº de jugadas
+		njugadas=0;
+		
+		//inhabilito botón Jugar
+		document.getElementById("B1").disabled=true;
+
+		// pongo a 0 las tiradas
+		document.getElementById('tiradas').value="00";
+
+		//inicializo arrays
+		for (i = 1; i <=20; i++) {imagenes[i]=0;}
+		for (i = 1; i <=20; i++) {posiciones[i]=0;}
+		
+	
+		//************** SELECCIONO IMÁGENES ARRAY IMÁGENES **********
+		//************** SELECCIONO IMÁGENES ARRAY IMÁGENES **********
+		for (i = 1; i <=20; i++)
+		{
+			seguir=true;
+			while (seguir)
+			{
+				//genero número aleatorio para seleccionar imagen
+				auximagen=parseInt(Math.random() * (20)) + 1;
+				
+				//miro si está libre
+				if (imagenes[auximagen]==0)
+				{
+						//la pongo ocupada
+						imagenes[auximagen]=1;
+						seguir=false;
+				}
+			}
+		//en auximagen tengo la imagen seleccionada
+		//ahora busco una posición libre
+		//************** SELECCIONO POSICIONES A LAS IMÁGENES **********
+		//************** SELECCIONO POSICIONES A LAS IMÁGENES **********
+				seguir=true;
+				while (seguir)
+				{
+					//genero número aleatorio para seleccionar posición
+					auxposicion=parseInt(Math.random() * (20)) + 1;
+					//miro si está libre
+					if (posiciones[auxposicion]==0)
+					{
+							//la pongo ocupada
+							posiciones[auxposicion]=auximagen;
+							//alert(aux);
+							document.getElementById('IMAGEN'+auxposicion).src='Numero'+auximagen+'.jpg';
+							seguir=false;
+					}
+				}
+				//despues de 6 segundos quito las imágenes y pongo el smile
+				reloj=setTimeout("quitoimagenes1()",6000);
+		}
+}
+//************************************************************************
+//************************************************************************
+function quitoimagenes1()
+{
+	clearTimeout(reloj);
+	for (i = 1; i <=20; i++) 
+	{
+	  document.getElementById('IMAGEN'+i).src='smile.jpg';
+	}
+	//habilito botón Fin Partida
+	document.getElementById("B2").disabled=false;
+	//habilito eventos
+	asocioeventos();
+}
+//************************************************************************
+//************************************************************************
+function quitoimagenes2(nimagen)
+{
+    clearTimeout(reloj);	
+	document.getElementById('IMAGEN'+nimagen).src='smile.jpg';
+}
+//************************************************************************
+//************************************************************************
+function finpartida()
+{
+	 clearTimeout(reloj);
+	
+	//habilito botón Jugar
+	document.getElementById("B1").disabled=false;
+	
+	//deshabilito botón FinPartida
+	document.getElementById("B2").disabled=true;	
+
+}
+//************************************************************************
+//************************************************************************
+function pulso(objeto)
+{
+	if ((document.getElementById("B1").disabled) &&  (!document.getElementById("B2").disabled))
+	{
+				// reproduzco sonido
+				tocando1.play();
+		
+				// actualizo nº de jugadas
+				njugadas++;
+				if (njugadas<=9)
+					document.getElementById('tiradas').value="0"+njugadas;
+				else
+					document.getElementById('tiradas').value=njugadas;
+				
+				// visualizo imagen pulsada
+				document.getElementById('IMAGEN'+objeto).src='Numero'+posiciones[objeto]+'.jpg';
+
+				// imagen que paso
+				//imagenqueselecciono=objeto;
+
+				// compruebo si es la imagen que toca
+				if (numeroquetoca==posiciones[objeto])
+				{
+					// actualizo número que toca
+					numeroquetoca++;
+					//quito evento click a la imagen pulsada
+					document.getElementById('IMAGEN'+objeto).onclick = null;
+					
+					// compruebo si es FINAL de partida
+					if (numeroquetoca==21)
+					{
+						tocando2.play();
+						// después de 8 segundos llamo a fin partida
+						reloj=setTimeout("finpartida()",8000);	
+						//deshabilito botón Jugar
+						document.getElementById("B1").disabled=true;
+						//deshabilito botón Fin partida
+						document.getElementById("B2").disabled=true;							
+					}
+				}
+				// si no es la imagen que toca
+				else
+				{
+					// mantengo la imagen pulsada 150 msg
+					reloj=setTimeout("quitoimagenes2("+objeto+")",150);				
+				}
+	}
+return true;
+}
+//************************************************************************
+//************************************************************************
+function asocioeventos()
+{
+	var i=1;
+	/* Con jQuery
+	while(i<10)
+	{
+		$("#IMAGEN"+(i)).attr("onclick","pulso("+i+");");
+		i++;
+	}
+	*/
+	
+	/* Manual	
+	document.getElementById('IMAGEN1').onclick = function () {pulso(1)};
+	document.getElementById('IMAGEN2').onclick = function () {pulso(2)};
+	document.getElementById('IMAGEN3').onclick = function () {pulso(3)};
+	document.getElementById('IMAGEN4').onclick = function () {pulso(4)};
+	document.getElementById('IMAGEN5').onclick = function () {pulso(5)};
+	document.getElementById('IMAGEN6').onclick = function () {pulso(6)};
+	document.getElementById('IMAGEN7').onclick = function () {pulso(7)};
+	document.getElementById('IMAGEN8').onclick = function () {pulso(8)};
+	document.getElementById('IMAGEN9').onclick = function () {pulso(9)};
+	*/
+	
+	// con Bucle
+	for(i=1; i<=20; i++)
+	{
+		setTimeout(asocioeventos2(i),0)
+	}	
+}
+//************************************************************************
+//************************************************************************
+function asocioeventos2(numero)
+{
+	document.getElementById('IMAGEN'+numero).onclick = function () {pulso(numero)};
+}	
+</script>
+<!-- ******************************************************************** -->
+<!-- ******************************************************************** -->
+<body>
+
+<div id="cuadrado"
+				   style="border:2px solid #04B404;width:700px;height:680px;position:absolute;
+		            top:50%;margin-top:-330px;left:50%;margin-left:-350px">		
+
+				<center>		
+				<br>
+				<img id="LOGO" name="LOGO" height='98' width='550' src="logo.jpg"
+				style="">					
+				</center>			
+
+				<center>			
+					<br>
+					<img id="IMAGEN1" name="IMAGEN1" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">				
+					<img id="IMAGEN2" name="IMAGEN2" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">				
+					<img id="IMAGEN3" name="IMAGEN3" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">
+					<img id="IMAGEN4" name="IMAGEN4" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">				
+					<img id="IMAGEN5" name="IMAGEN5" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">				
+				</center>	
+				
+				<center>	
+					<img id="IMAGEN6" name="IMAGEN6" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">				
+					<img id="IMAGEN7" name="IMAGEN7" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">				
+					<img id="IMAGEN8" name="IMAGEN8" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">
+					<img id="IMAGEN9" name="IMAGEN9" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">				
+					<img id="IMAGEN10" name="IMAGEN10" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">				
+				</center>	
+				
+				<center>			
+					
+					<img id="IMAGEN11" name="IMAGEN11" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">				
+					<img id="IMAGEN12" name="IMAGEN12" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">				
+					<img id="IMAGEN13" name="IMAGEN13" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">
+					<img id="IMAGEN14" name="IMAGEN14" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">				
+					<img id="IMAGEN15" name="IMAGEN15" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">				
+				</center>
+				<center>	
+					<img id="IMAGEN16" name="IMAGEN16" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">				
+					<img id="IMAGEN17" name="IMAGEN17" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">				
+					<img id="IMAGEN18" name="IMAGEN18" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">
+					<img id="IMAGEN19" name="IMAGEN19" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">				
+					<img id="IMAGEN20" name="IMAGEN20" height='130' width='130' src="smile.jpg" border=1 
+					style="cursor:pointer;">				
+				</center>	
+				<br>				
+								
+				<!-- DIV botones y caja texto tiradas -->
+				<center>	
+				<div id="botones" style = "border:0px solid blue;height:70px; width: 405px;">
+						<input type="button" id="B1" name="B1" value="  Jugar  " 			style="position:relative;cursor:pointer;width:150px; height:60;top:-10px;left:0px" onClick="inicio()">
+						<input type="button" id="B2" name="B2" value="  Fin Partida  " style="position:relative;cursor:pointer;width:150px; height:60;top:-10px;" onClick="finpartida()" disabled="true">
+						
+						<input type="text" id="tiradas" value="" readonly="readonly" 
+						style="border:2px solid red;width:90px;height:60px;text-align:center;
+						font-size:50px;color:blue; font-family:Calibri;font-weight:bold;position:relative;top:3px">				
+			   </div>
+			   </center>	
+</div>
+
+<audio id="musica" src="sonido.mp3" autobuffer></audio>
+<audio id="musica2" src="premio.mp3" autobuffer></audio>
+</body>
+</html>
+
+
+

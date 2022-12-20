@@ -1,0 +1,453 @@
+<html>
+
+<head>
+<title>Juego Parejas</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<!-- ******************************************************************** -->
+<!-- ******************************************************************** -->
+<script languaje="JavaScript">
+
+var i;
+var auximagen;
+var auxposicion;
+var reloj;
+var seguir=true;
+var imagenes=new Array();
+var posiciones=new Array();
+var npulsaciones=0;
+
+var nimagen1=0;
+var nimagen2=0;
+var imagen1=0;
+var imagen2=0;
+
+//var sonido1 = new Audio('sonido.mp3');
+var sonido1;
+var sonido2;
+
+var seguir2=true;
+var decimas=0;
+var segundos=0;
+var valor=0;
+//************************************************************************
+//************************************************************************
+function inicio()
+{
+
+// inicializo todas las variables del tiempo
+seguir2=true;
+document.getElementById('tiempo').value="00:00";
+decimas=0;
+segundos=0;
+valor=0;
+
+asocioeventos();
+
+//sonidos
+sonido1 = document.getElementById('musica1');
+sonido2 = document.getElementById('musica2');
+
+//sonido2.play();
+//sonido.play();
+
+//inhabilito botón Jugar
+document.getElementById("B1").disabled=true;
+
+// pongo a 0 jugadas
+document.getElementById('acertados').value=0;
+
+//inicializo arrays
+for (i = 1; i <=18; i++) {imagenes[i]=0;}
+for (i = 1; i <=36; i++) {posiciones[i]=0;}
+
+// reproduzco sonidos
+sonido2.play();
+
+//cargo imágenes en pantalla
+for (i = 1; i <=18; i++)
+{
+	seguir=true;
+	while (seguir)
+	{
+		//genero número aleatorio para seleccionar imagen
+		auximagen=parseInt(Math.random() * (18)) + 1;
+		
+		//miro si está libre
+		if (imagenes[auximagen]==0)
+		{
+				//la pongo ocupada
+				imagenes[auximagen]=1;
+				seguir=false;
+		}
+	}
+		
+		//en auximagen tengo la imagen seleccionada
+		//ahora busco 2 posiciones libres
+
+		//posición 1
+		seguir=true;
+		while (seguir)
+		{
+			//genero número aleatorio para seleccionar posición
+			auxposicion=parseInt(Math.random() * (36)) + 1;
+			//miro si está libre
+			if (posiciones[auxposicion]==0)
+			{
+					//la pongo ocupada
+					posiciones[auxposicion]=auximagen;
+					//alert(aux);
+					document.getElementById('IMAGEN'+auxposicion).src=auximagen+'.png';
+					seguir=false;
+			}
+		}
+		
+		//posición 2
+		seguir=true;
+		while (seguir)
+		{
+			//genero número aleatorio para seleccionar posición
+			auxposicion=parseInt(Math.random() * (36)) + 1;
+			//miro si está libre
+			if (posiciones[auxposicion]==0)
+			{
+					//la pongo ocupada
+					posiciones[auxposicion]=auximagen;
+					document.getElementById('IMAGEN'+auxposicion).src=auximagen+'.png';
+					seguir=false;
+			}
+		}
+
+		//despues de 6 segundos quito las imágenes y pongo el smile
+		reloj=setTimeout("quitoimagenes1()",6000);
+
+		//inicio reloj
+		reloj2=setTimeout("display()",6000);
+}
+}
+//************************************************************************
+//************************************************************************
+function quitoimagenes1()
+{
+	for (i = 1; i <=36; i++) 
+	{
+	  document.getElementById('IMAGEN'+i).src='smile.jpg';
+	  clearTimeout(reloj);
+	}
+	//habilito botón Fin Partida
+	document.getElementById("B2").disabled=false;
+	
+
+}
+//************************************************************************
+//************************************************************************
+function quitoimagenes2()
+{
+	  document.getElementById('IMAGEN'+imagen1).src='smile.jpg';
+	  document.getElementById('IMAGEN'+imagen2).src='smile.jpg';
+	  clearTimeout(reloj);
+}
+//************************************************************************
+//************************************************************************
+function finpartida()
+{
+	//habilito botón Jugar
+	document.getElementById("B1").disabled=false;
+	//deshabilito botón Fin partida
+	document.getElementById("B2").disabled=true;		
+
+	for (i = 1; i <=36; i++) 
+	{
+	  document.getElementById('IMAGEN'+i).src='smile.jpg';
+	}
+	
+	// pongo a 0 jugadas
+	document.getElementById('acertados').value=0;
+	
+	// habilito eventos
+	asocioeventos();
+	
+	//quito reloj
+	seguir2=false;
+	document.getElementById('tiempo').value="00:00";
+}
+//************************************************************************
+//************************************************************************
+function pulso(objeto)
+{
+	
+	if ((document.getElementById("B1").disabled) &&  (!document.getElementById("B2").disabled))
+	{
+			sonido1.load();
+			sonido1.play();
+			npulsaciones++;
+			document.getElementById('IMAGEN'+objeto).src=posiciones[objeto]+'.png';
+			sonido1.load();
+			sonido1.play();
+
+			switch(npulsaciones)
+			{
+			case 1:
+				//objeto htm imagen que paso
+				imagen1=objeto;
+				//imagen almacenada en esa posición
+				nimagen1=posiciones[objeto];
+				//quito evento click a la imagen pulsada
+				document.getElementById('IMAGEN'+imagen1).onclick = null;	
+				break;
+			case 2:
+				//objeto htm imagen que paso
+				imagen2=objeto;
+				//imagen almacenada en esa posición
+				nimagen2=posiciones[objeto];
+				//quito evento click a la imagen pulsada
+				document.getElementById('IMAGEN'+imagen2).onclick = null;	
+	
+				// si las imágenes son iguales
+				if (nimagen1==nimagen2)
+				{
+					document.getElementById('acertados').value=parseInt(document.getElementById('acertados').value)+1;
+					
+					//si ya ha terminado el juego
+					if (parseInt(document.getElementById('acertados').value)==8)
+					{
+					document.getElementById("B1").disabled=false;
+					document.getElementById("B2").disabled=true;		
+					sonido2.play();
+					//paro reloj
+					seguir2=false;
+					}
+				}
+				// si las imágenes no son iguales
+				else
+				{
+					//pongo eventos que he quitado
+					asocioevento(imagen1);
+					asocioevento(imagen2);
+					reloj=setTimeout("quitoimagenes2()",200);					
+				}
+				npulsaciones=0;
+
+				break;
+			}
+	}
+return true;
+}
+
+//************************************************************************
+//************************************************************************
+function asocioeventos()
+{
+	for(let i=1;i<=36;i++){
+		document.getElementById("IMAGEN"+i).onclick = function(){pulso(i)};
+	}
+
+}
+
+function asocioevento(n)
+{
+document.getElementById('IMAGEN'+n).onclick = function () {pulso(n)};
+}
+
+function display()
+{
+  clearTimeout(valor);
+  if (seguir2)
+   { 
+	 // mejora de 2 dígitos 
+     if (segundos<=9)
+	 {
+			document.getElementById('tiempo').value="0"+segundos+"."+"0"+decimas;
+	 }
+     else
+	 {
+			document.getElementById('tiempo').value=segundos+"."+"0"+decimas;
+	 }
+     
+	 if (decimas>=9)
+       {
+        decimas=0;
+        segundos+=1;
+       }
+     else
+       {
+        decimas+=1;
+       }
+
+     valor=setTimeout("display()",100);
+	} 
+}
+</script>
+<!-- ******************************************************************** -->
+<!-- ******************************************************************** -->
+<body>
+
+<div id="cuadrado"
+		style="border:2px solid #04B404;width:700px;height:790px;position:absolute;
+		            top:50%;margin-top:-335px;left:50%;margin-left:-350px">
+
+				<center>		
+				<br>
+				<img id="LOGO" name="LOGO" height='110' width='420' src="logo.png"
+				style="">					
+				</center>			
+					
+				<center>			
+				<br>
+				<img id="IMAGEN1" name="IMAGEN1" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(1)">
+				<img id="IMAGEN2" name="IMAGEN2" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(2)">
+				<img id="IMAGEN3" name="IMAGEN3" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(3)">
+				<img id="IMAGEN4" name="IMAGEN4" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(4)">
+				<img id="IMAGEN5" name="IMAGEN5" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(5)">
+				<img id="IMAGEN6" name="IMAGEN6" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(6)">
+				</center>	
+
+				
+				<center>	
+				<img id="IMAGEN7" name="IMAGEN7" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(7)">
+				<img id="IMAGEN8" name="IMAGEN8" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(8)">
+				<img id="IMAGEN9" name="IMAGEN9" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(9)">				
+				<img id="IMAGEN10" name="IMAGEN10" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(10)">
+				<img id="IMAGEN11" name="IMAGEN11" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(11)">
+				<img id="IMAGEN12" name="IMAGEN12" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(12)">
+				</center>	
+				
+				
+				<center>	
+				<img id="IMAGEN13" name="IMAGEN13" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(13)">				
+				<img id="IMAGEN14" name="IMAGEN14" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(14)">
+				<img id="IMAGEN15" name="IMAGEN15" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(15)">				
+				<img id="IMAGEN16" name="IMAGEN16" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(16)">
+				<img id="IMAGEN17" name="IMAGEN17" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(17)">
+				<img id="IMAGEN18" name="IMAGEN18" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(18)">
+				</center>	
+
+				
+				<center>	
+				<img id="IMAGEN19" name="IMAGEN19" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(19)">				
+				<img id="IMAGEN20" name="IMAGEN20" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(20)">
+				<img id="IMAGEN21" name="IMAGEN21" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(21)">
+				<img id="IMAGEN22" name="IMAGEN22" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(22)">
+				<img id="IMAGEN23" name="IMAGEN23" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(23)">
+				<img id="IMAGEN24" name="IMAGEN24" height='100' width='100' src="smile.jpg" border=1 
+				style="cursor:pointer;"
+				onclick="pulso(24)">
+				</center>
+				<center>	
+					<img id="IMAGEN25" name="IMAGEN25" height='100' width='100' src="smile.jpg" border=1 
+					style="cursor:pointer;"
+					onclick="pulso(25)">				
+					<img id="IMAGEN26" name="IMAGEN26" height='100' width='100' src="smile.jpg" border=1 
+					style="cursor:pointer;"
+					onclick="pulso(26)">
+					<img id="IMAGEN27" name="IMAGEN27" height='100' width='100' src="smile.jpg" border=1 
+					style="cursor:pointer;"
+					onclick="pulso(27)">
+					<img id="IMAGEN28" name="IMAGEN28" height='100' width='100' src="smile.jpg" border=1 
+					style="cursor:pointer;"
+					onclick="pulso(28)">
+					<img id="IMAGEN29" name="IMAGEN29" height='100' width='100' src="smile.jpg" border=1 
+					style="cursor:pointer;"
+					onclick="pulso(29)">
+					<img id="IMAGEN30" name="IMAGEN30" height='100' width='100' src="smile.jpg" border=1 
+					style="cursor:pointer;"
+					onclick="pulso(30)">
+				</center>
+				<center>	
+					<img id="IMAGEN31" name="IMAGEN31" height='100' width='100' src="smile.jpg" border=1 
+					style="cursor:pointer;"
+					onclick="pulso(31)">				
+					<img id="IMAGEN32" name="IMAGEN32" height='100' width='100' src="smile.jpg" border=1 
+					style="cursor:pointer;"
+					onclick="pulso(32)">
+					<img id="IMAGEN33" name="IMAGEN33" height='100' width='100' src="smile.jpg" border=1 
+					style="cursor:pointer;"
+					onclick="pulso(33)">
+					<img id="IMAGEN34" name="IMAGEN34" height='100' width='100' src="smile.jpg" border=1 
+					style="cursor:pointer;"
+					onclick="pulso(34)">
+					<img id="IMAGEN35" name="IMAGEN35" height='100' width='100' src="smile.jpg" border=1 
+					style="cursor:pointer;"
+					onclick="pulso(35)">
+					<img id="IMAGEN36" name="IMAGEN36" height='100' width='100' src="smile.jpg" border=1 
+					style="cursor:pointer;"
+					onclick="pulso(36)">
+				</center>
+
+				<br>
+				
+				<div id="botones" style = "position:absolute;left:140px;border:0px solid blue;height: 60px; width: 420px;">
+				<input type="button" id="B1" name="B1" value="  Jugar  " 			style="cursor:pointer;width:110px; height:60;" onClick="inicio()">
+				<input type="button" id="B2" name="B2" value="  Fin Partida  " style="cursor:pointer;width:110px; height:60;" onClick="finpartida()" disabled="true">
+				
+				<input type="text" id="acertados" value="0" readonly="readonly" 
+				style="border:2px solid red;position:absolute;left:230px;width:64px;height:60px;text-align:center;
+				font-size:35px;color:blue; font-family:Calibri;font-weight:bold">		
+
+				<input type="text" id="tiempo" value="00:00" readonly="readonly" 
+				style="border:2px solid red;position:absolute;left:300px;width:122px;height:60px;text-align:center;
+				font-size:35px;color:blue; font-family:Calibri;font-weight:bold">						
+			</div>
+</div>
+
+
+<audio id="musica1"> 
+	<source src="sonido.mp3" type="audio/mpeg">
+</audio>
+
+
+<audio id="musica1" src="sonido.mp3" autobuffer></audio>
+<audio id="musica2" src="sonido2.mp3" autobuffer></audio>
+
+</body>
+</html>
+
+
+

@@ -21,3 +21,5 @@ class Privado{
 const part=new Privado();
 part.getPrivateMessage();
 part.getPrivado();
+part.#privateMethod();
+part.#privado;
