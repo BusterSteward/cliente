@@ -1,0 +1,30 @@
+<html>
+<head>
+	<title>Trabajando con DOM</title>
+</head>
+<body>
+	<h1>Modelo de Objetos del Documento</h1>
+	<p>Primer párrafo</p>
+	<a href="https://www.w3schools.com/js/default.asp">Enlace</a>
+	<p id="salida">Elementos HTML de la página</p>
+	<script type="text/javascript">
+		function mostrarChilds(nodo){
+			let hijos=nodo.children;
+			for(let i=0;i<hijos.length;i++){
+				console.log(hijos.item(i).nodeName);
+			}
+		}
+		function recorrerDOM(nodo){
+			if(nodo.children.length>0){
+				mostrarChilds(nodo);
+				for(let i=0;i<nodo.children.length;i++){
+					recorrerDOM(nodo.children[i]);
+				}
+			}
+		}
+		let nodo=document;
+
+		recorrerDOM(nodo);
+	</script>
+</body>
+</html>

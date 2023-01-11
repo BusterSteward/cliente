@@ -1,0 +1,28 @@
+﻿<html>
+ <head>
+ <title>DOM Tutorial</title>
+ </head>
+
+ <body>
+ <h1 id="h1">DOM Lesson one</h1>
+ <p id="p1" name="parrafo">Hello world! 1</p>
+ <p id="p2" name="parrafo">Hello world! 2</p>
+ <p id="p3" name="parrafo">Hello world! 3</p>
+ <p>Hello world! 4</p>
+ </body>
+ <script>
+    console.log("ejemplo 1: ",document.children[0]);
+    console.log("ejemplo 2: ",document.children[0].parentNode);
+    console.log("ejemplo 3: ",document.children[0].firstChild);
+    console.log("ejemplo 4: ",document.children[0].firstChild.nextElementSibling);
+    console.log("ejemplo 5: ",document.children[0].firstChild.nextElementSibling.lastChild);
+    console.log("ejemplo 6: ",document.children[0].children[1].children[1]);
+    console.log("ejemplo 7: ",document.getElementsByTagName("p").length);
+    console.log("ejemplo 8: ",document.getElementsByTagName("p").item(0).innerText);
+    console.log("ejemplo 9: ",h1.innerHTML);
+    console.log("ejemplo 10: ",document.getElementsByName("parrafo")[0]);
+    console.log("ejemplo 11: ",document.getElementById("p1").innerHTML);
+    console.log("ejemplo 12: ",document.querySelectorAll("body>p"));
+    console.log("ejemplo 13: ",document.querySelector("p"));
+ </script>
+</html>
