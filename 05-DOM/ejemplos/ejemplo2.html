@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ol>
+        
+    </ol>
+    <script>
+        /*
+        let p=document.createElement("p");
+        let text=document.createTextNode("hola mundo");
+        p.appendChild(text);
+        let li=document.createElement("li");
+        let text2=document.createTextNode("3");
+        li.appendChild(text2);
+
+
+        document.querySelector("ol").before(p);
+        document.querySelector("ol").append(li);
+        */
+        let pr=prompt("Introduce un numero")
+        pr=parseInt(pr);
+
+        let fragment=document.createDocumentFragment();
+        let li
+        for(let i=0;i<pr;i++){
+            li=document.createElement("li");
+            li.appendChild(document.createTextNode(i));
+            fragment.appendChild(li);
+        }
+        document.querySelector("ol").appendChild(fragment);
+    </script>
+</body>
+</html>
