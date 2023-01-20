@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<title>UT 7 - eventos</title>
+
+
+
+
+</head>
+
+<body>
+
+<p id="contenidos1" style="display: block">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis enim vitae orci. Phasellus libero. Maecenas nisl arcu, consequat congue, commodo nec, commodo ultricies, turpis. Quisque sapien nunc, posuere vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id, aliquam vitae, ultrices porttitor, pede. Nullam sit amet nisl elementum elit convallis malesuada. Phasellus magna sem, semper quis, faucibus ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio urna consequat arcu, at posuere ante quam non dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis scelerisque.</p>
+<button id="boton1">Ocultar contenidos</button>
+
+<br>
+
+<p id="contenidos2" style="display: block">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis enim vitae orci. Phasellus libero. Maecenas nisl arcu, consequat congue, commodo nec, commodo ultricies, turpis. Quisque sapien nunc, posuere vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id, aliquam vitae, ultrices porttitor, pede. Nullam sit amet nisl elementum elit convallis malesuada. Phasellus magna sem, semper quis, faucibus ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio urna consequat arcu, at posuere ante quam non dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis scelerisque.</p>
+<button id="boton2">Ocultar contenidos</button>
+
+<br>
+
+<p id="contenidos3" style="display: block">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis enim vitae orci. Phasellus libero. Maecenas nisl arcu, consequat congue, commodo nec, commodo ultricies, turpis. Quisque sapien nunc, posuere vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id, aliquam vitae, ultrices porttitor, pede. Nullam sit amet nisl elementum elit convallis malesuada. Phasellus magna sem, semper quis, faucibus ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio urna consequat arcu, at posuere ante quam non dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis scelerisque.</p>
+<button id="boton3">Ocultar contenidos</button>
+
+
+
+</body>
+<script>
+
+    const botones = document.getElementsByTagName("button");
+    
+  
+    
+    for(let i=0;i<botones.length;i++){
+        botones.item(i).addEventListener("click",function(){
+            let p=document.getElementById("contenidos"+(i+1));
+
+            p.style.display!="none" ? p.style.display="none" : p.style.display="block";
+
+            this.innerText=="Ocultar contenidos" ? this.innerText="Volver a mostrar" : this.innerText="Ocultar contenidos"
+            
+        });
+    }
+    </script>
+</html>

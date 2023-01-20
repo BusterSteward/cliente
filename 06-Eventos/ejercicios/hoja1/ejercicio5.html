@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5</title>
+    <style>
+
+        *{
+            box-sizing: border-box;
+        }
+        #principal{
+            display: block;
+            width: 500px;
+            margin:auto;
+        }
+        div{
+            display: block;
+            width: 600px;
+            margin: auto;
+            padding: 10px;
+        }
+        div>img{
+            width: 90px;
+            margin:0 10px;
+        }
+        div>img:hover{
+            border:solid black 2px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <img src="imagenes/gato1.jpg" alt="imagen principal" id="principal">
+    <div id="listaImagenes">
+        <img src="imagenes/gato1.jpg" alt="gato 1">
+        <img src="imagenes/gato2.jpg" alt="gato 2">
+        <img src="imagenes/gato3.jpg" alt="gato 3">
+        <img src="imagenes/gato4.jpg" alt="gato 4">
+        <img src="imagenes/gato5.jpg" alt="gato 5">
+    </div>
+    <script>
+        const fotos = listaImagenes.children;
+
+        const principal=document.getElementById("principal");
+        for(let i=0;i<fotos.length;i++){
+            let foto=fotos.item(i);
+            foto.addEventListener("click",function(){
+                principal.src=foto.src;
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+</head>
+<body>
+    <button id="boton">
+        Dame la hora
+    </button>
+    <p id="hora"></p>
+
+</body>
+<script>
+    boton.onclick=function(){
+        const fechaHoy = new Date();
+        let meses=fechaHoy.getMonth()+1,dias=fechaHoy.getDate(),horas=fechaHoy.getHours(),minutos=fechaHoy.getMinutes(),segundos=fechaHoy.getSeconds();
+        if(dias<10) dias="0"+dias;
+        if(meses<10) meses="0"+meses;
+        if(horas<10) horas="0"+horas;
+        if(minutos<10) minutos="0"+minutos;
+        if(segundos<10) segundos="0"+segundos;
+        
+        hora.innerText=dias+"/"+meses+"/"+fechaHoy.getFullYear()+" "+horas+":"+minutos+":"+segundos;
+    };
+</script>
+</html>
