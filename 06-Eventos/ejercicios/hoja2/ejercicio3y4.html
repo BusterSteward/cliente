@@ -1,0 +1,46 @@
+﻿<!DOCTYPE >
+
+<html>
+
+<title>UT6 - actividad 5</title>
+
+<style type="text/css">
+	body {font-family: arial, helvetica;}
+	#info {width:160px; border:thin solid silver; padding:.5em; position:fixed;}
+	#info h1 {margin: 0;}
+	</style>
+
+	<script type="text/javascript">
+
+		document.addEventListener("mousemove",controlRaton);
+		window.addEventListener("keypress",controlTeclado);
+		document.addEventListener("click",function(){info.style.backgroundColor="#FFFFCC"});
+
+		function controlTeclado(event){
+			
+			if(event.key.length==1){
+				info.innerHTML="<h1>TECLADO</h1><p>Carácter: ["+event.key+"]<br>Código: ["+event.charCode+"]</p>";
+				info.style.backgroundColor="#CCE6FF";
+			}
+		}
+		function controlRaton(event){
+			info.innerHTML="<h1>RATÓN</h1><p>Página: ["+event.clientX+", "+event.clientY+"]<br>Pantalla: ["+event.screenX+", "+event.screenY+"]</p>";
+			info.style.backgroundColor="white";
+		}
+
+
+	
+	</script>
+
+</head>
+
+<body>
+
+	<div id="info">
+		<h1></h1>
+		<p></p>
+	</div>
+	
+
+</body>
+</html>

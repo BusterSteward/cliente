@@ -1,0 +1,42 @@
+﻿<!DOCTYPE >
+
+<html>
+
+<title>UT6 - actividad 5</title>
+
+<style type="text/css">
+	body {font-family: arial, helvetica;}
+	#info {width:160px; border:thin solid silver; padding:.5em; position:fixed;}
+	#info h1 {margin: 0;}
+	</style>
+
+
+</head>
+
+<body>
+
+	<div id="info">
+		<h1>Posición</h1>
+		<p id="zona"></p>
+	</div>
+
+	<script type="text/javascript">
+
+		document.onclick = informacion
+
+		function informacion(event){
+			let tam={w:window.innerWidth,h:window.innerHeight};
+			let position={x:event.clientX,y:event.clientY};
+
+			let cuadrante;
+
+			position.x<(tam.w/2) ? cuadrante="izquierda":cuadrante="derecha";
+			position.y>(tam.h/2) ? cuadrante+=" abajo":cuadrante+=" arriba";
+			
+			zona.innerText=cuadrante;
+		}
+
+	</script>
+
+</body>
+</html>
