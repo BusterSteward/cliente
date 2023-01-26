@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head> 
+    <title> Trabajando con un objeto Select</title>
+    <script type="text/javascript">
+        function consultar(){
+            var objProvincias=document.getElementById("provincias");
+            var texto=objProvincias.options[objProvincias.selectedIndex].text;
+            var valor=
+            objProvincias.options[objProvincias.selectedIndex].value;
+            alert("Datos de la opción seleccionada:\n\nTexto:"+texto+"\nValor: "+valor);
+        }
+        function visualizarProvincias(comunidad){
+            let provincias=document.getElementById("provincias");
+            let nodo,texto,fragmento;
+            while(provincias.children.length>0){
+                provincias.removeChild(provincias.children[0]);
+            }
+            switch(comunidad.value){
+                case "none":
+                    provincias.innerHTML="";
+                    provincias.disabled=true;
+                    break;
+                case "CV":
+                    fragmento=document.createDocumentFragment();
+
+                    
+                    nodo=document.createElement("option");
+                    nodo.setAttribute("value","none");
+                    nodo.setAttribute("selected","true");
+                    fragmento.appendChild(nodo);
+                    nodo=document.createElement("option");
+                    nodo.setAttribute("value","CAS");
+                    texto=document.createTextNode("CASTELLÓN");
+                    nodo.appendChild(texto);
+                    fragmento.appendChild(nodo);
+                    nodo=document.createElement("option");
+                    nodo.setAttribute("value","VA");
+                    texto=document.createTextNode("VALENCIA");
+                    nodo.appendChild(texto);
+                    fragmento.appendChild(nodo);
+                    nodo=document.createElement("option");
+                    nodo.setAttribute("value","AL");
+                    texto=document.createTextNode("ALICANTE");
+                    nodo.appendChild(texto);
+                    fragmento.appendChild(nodo);
+
+                    provincias.appendChild(fragmento);
+                    /*
+                    provincias.innerHTML=`
+                    <option value="none" selected></option>
+                    <option value="CAS">CASTELLÓN</option>
+                    <option value="VA">VALENCIA</option>
+                    <option value="AL">ALICANTE</option>`;*/
+                    provincias.disabled=false;
+                    break;
+                case "CLM":
+                    fragmento=document.createDocumentFragment();
+                    nodo=document.createElement("option");
+                    nodo.setAttribute("value","none");
+                    nodo.setAttribute("selected","true");
+                    fragmento.appendChild(nodo);
+                    nodo=document.createElement("option");
+                    nodo.setAttribute("value","AL");
+                    texto=document.createTextNode("ALBACETE");
+                    nodo.appendChild(texto);
+                    fragmento.appendChild(nodo);
+                    nodo=document.createElement("option");
+                    nodo.setAttribute("value","CU");
+                    texto=document.createTextNode("CUENCA");
+                    nodo.appendChild(texto);
+                    fragmento.appendChild(nodo);
+                    nodo=document.createElement("option");
+                    nodo.setAttribute("value","CR");
+                    texto=document.createTextNode("CIUDAD REAL");
+                    nodo.appendChild(texto);
+                    fragmento.appendChild(nodo);
+                    nodo=document.createElement("option");
+                    nodo.setAttribute("value","TO");
+                    texto=document.createTextNode("TOLEDO");
+                    nodo.appendChild(texto);
+                    fragmento.appendChild(nodo);
+                    nodo=document.createElement("option");
+                    nodo.setAttribute("value","GUA");
+                    texto=document.createTextNode("GUADALAJARA");
+                    nodo.appendChild(texto);
+                    fragmento.appendChild(nodo);
+
+                    provincias.appendChild(fragmento);
+                    /*
+                    provincias.innerHTML=`
+                    <option value="none" selected></option>
+                    <option value="AL">ALBACETE</option>
+                    <option value="CU">CUENCA</option>
+                    <option value="CR">CIUDAD REAL</option>
+                    <option value="TO">TOLEDO</option>
+                    <option value="GUA">GUADALAJARA</option>`;*/
+                    provincias.disabled=false;
+                    break;
+            }
+        }
+        function habilitoSubmit(prov){
+            
+            document.getElementById("submit").disabled=prov.value=="none";
+        }
+        
+    </script>
+</head>
+<body>
+    <h1>Trabajando con un objeto Select</h1>
+    <form id="formulario" action="">
+        <p> <label for="comunidad">Selecciona comunidad: </label>
+        <select name="comunidad" id="comunidad" onchange="visualizarProvincias(this)">
+        <option value="none" selected></option>
+        <option value="CLM">Castilla-la mancha</option>
+        <option value="CV">Comunidad Valenciana</option>
+        </select><br><br>
+        <label for="provincias">Selecciona provincia: </label>
+        <select disabled name="provincias" id="provincias" onchange="habilitoSubmit(this)">
+
+        </select>
+        </p> Selecciona una opción y pulsa el botón.
+        <input id="submit" disabled type="button" name="boton" value="Consultar información de
+        la opción" onclick="consultar()"/>
+    </form>
+</body>
+
+</html>

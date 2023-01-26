@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Trabajando con objetos input de tipo radio</h1>
+    <form id="formulario" action="stogges.php">
+        <fieldset>
+            <legend>Selecciona tu actor favorito:</legend>
+            <input type="radio" name="actores" id="actor1" value="actor1" onclick="mostrar(this)">
+            <label for="actor1">actor1</label>
+            <input type="radio" name="actores" id="actor2" value="actor2" onclick="mostrar(this)">
+            <label for="actor2">actor2</label>
+            <input type="radio" name="actores" id="actor3" value="actor3" onclick="mostrar(this)">
+            <label for="actor3">actor3</label>
+            <input type="submit" value="Enviar">
+        </fieldset>
+    </form>
+</body>
+<script>
+    function mostrarDatos(){
+        var formulario=document.getElementById("formulario");
+        for(var i=0;i<formulario.actores.length;i++){
+            if(formulario.actores[i].checked){
+                alert(formulario.actores[i].value);
+            }
+        }
+    }
+    function mostrar(input){
+        alert(this.value);
+    }
+</script>
+</html>

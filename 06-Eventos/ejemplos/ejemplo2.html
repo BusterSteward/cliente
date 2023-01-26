@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Propiedad VALUE de un objeto de tipo texto</title>
+</head>
+<body>
+<h1>Propiedad VALUE de un objeto INPUT de tipo TEXT</h1>
+<form id="formulario" action="pagina.php">
+<p>
+<label for="nombre">Nombre y Apellidos: </label>
+<input type="text" id="nombre" name="nombre" value="" size="30">
+</p>
+Introduce tu Nombre y Apellidos y haz click fuera del campo.
+</form>
+<script type="text/javascript">
+function convertirMayusculas(e){
+e.target.value=document.getElementById("nombre").
+value.toUpperCase();
+}
+function borrarTexto(){
+    this.value="";
+}
+function hacerSubmit(e){
+    console.log("hola");
+    if(this.value=="ESCULTOR")
+        e.target.form.submit();
+}
+document.getElementById("nombre").oninput = convertirMayusculas;
+document.getElementById("nombre").onfocus=borrarTexto;
+document.getElementById("nombre").onblur=hacerSubmit;
+
+</script>
+</body>
+</html>

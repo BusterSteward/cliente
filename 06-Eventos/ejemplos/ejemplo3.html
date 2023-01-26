@@ -1,0 +1,33 @@
+﻿<html>
+    <head>
+        
+    </head>
+    <body>
+        <form action="pagina.html" method="get">
+            <input type="checkbox" id="verano" name="verano" value="Si"/>
+            ¿Te gusta el verano?
+            <input type="submit" />
+        </form>
+        <button onclick="marcar()">Marcar Checkbox</button>
+        <button onclick="desmarcar()">Desmarcar Checkbox</button>
+    </body>
+    <script type="text/javascript">
+        function marcar(){
+        if(document.getElementById("verano").checked)
+            alert("ya esta marcado")
+        else
+            document.getElementById("verano").checked=true;
+        }
+        function desmarcar(){
+        if(!document.getElementById("verano").checked)
+            alert("ya esta desmarcado");
+        else
+            document.getElementById("verano").checked=false;
+        }
+        document.querySelector("form").onsubmit= function(e){
+            const res=confirm("¿Seguro que quieres enviarlo?");
+            if(!res)
+                e.preventDefault();
+        }
+    </script>
+</html>
