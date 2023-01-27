@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Validacion de un Formulario</title> 
+	
+	<style type="text/css"> 
+		label{ width: 150px; float:left; margin-bottom:5px; } 
+		input[type="text"], input[type="submit"] , input[type="reset"]{ width:150px; float:left; margin-bottom:5px; } 
+		input[type="radio"] { width:20px; float:left; margin-bottom:5px; } 
+		span {
+			width:80px; float:left; margin-bottom:5px;
+		}
+		fieldset{ background:#CCFF99;  width: 370px; } 
+		.error{ border: solid 2px #FF0000; } 
+	</style> 
+
+</head>
+<body>
+	<fieldset> <legend> Datos de usuario </legend> 
+
+	<form name="datosUsuario" id="formulario" action="http://www.google.es" method="get"> 
+		<label for="nombre">Nombre:</label> 
+		<input type="text" name="nombre" id="nombre" > 
+		<label for="apellidos">Apellidos:</label> 
+		<input type="text" name="apellidos" id="apellidos" > 
+		<label for="tfno">Teléfono:</label> 
+		<input name="tfno" type="text" id="tfno" > 
+		<label for="edad">Mayor de edad:</label> 
+		
+		<input name="edad" type="radio" id="si" > <span>Sí</span> 
+		
+		<input name="edad" type="radio" id="no" > <span>No</span>
+		
+		<p><input type="reset" name="limpiar" id="limpiar" value="Limpiar" > 
+		<input type="submit" name="enviar" id="enviar" value="Enviar" > 
+
+
+	</form> 
+
+
+	</fieldset>
+
+
+</body>
+</html>
