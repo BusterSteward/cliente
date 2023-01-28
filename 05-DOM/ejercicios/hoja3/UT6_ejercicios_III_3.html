@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<style type="text/css">	
+		body{
+			text-align: center;
+			background-color: #F4F6F6;
+		}
+		
+	
+	</style>
+</head>
+<body>
+	<h2>IMÁGENES</h2>
+	<img id="objeto0"> 
+	<img id="objeto1"> 
+	<img id="objeto2"> 
+	<img id="objeto3"> 
+	
+<script type="text/javascript">
+
+	let imagenes=["bandeja.JPG","cama.JPG","cojin.JPG","cortinas.JPG","cubiertos.JPG","dosificador.JPG","lampara.JPG","libreria.JPG","mesa.JPG","percha.JPG","reloj.JPG","silla.JPG","sofa.JPG","taza.JPG","vasos.JPG"];
+
+	const usados=[];
+	let times=0;
+	let id = setInterval(()=>{
+		
+		times=times%4;
+		let objeto = document.getElementById("objeto"+times)
+		let index = Math.trunc(Math.random()*imagenes.length);
+		objeto.src="./imagenes/"+imagenes[index];
+		usados.push(imagenes[index]);
+		imagenes.splice(index,1);
+		if(usados.length==8){
+			let aux=usados.splice(0,4);
+			imagenes=imagenes.concat(aux);
+		}
+		console.log("Usados:",usados);
+		console.log("Imagenes: ",imagenes);
+		
+		times++;
+		
+	},1000);
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const tamUl=12,units="px";
+
+    const frase=prompt("Introduce una frase");
+    const palabras = frase.split(" ");
+
+    const fragmento=document.createDocumentFragment();
+
+    const ul=document.createElement("ul");
+    ul.style.fontSize=tamUl+units;
+    
+    let auxSize=tamUl*1.25;
+    palabras.forEach(palabra =>{
+        let li = document.createElement("li");
+        li.appendChild(document.createTextNode(palabra));
+        li.style.fontSize=auxSize+units;
+        auxSize*=1.25;
+        ul.appendChild(li);
+    })
+
+    fragmento.appendChild(ul);
+    document.body.appendChild(fragmento);
+
+</script>
+</html>

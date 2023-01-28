@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+    <style>
+        table{
+            border:solid 1px black;
+            text-align: center;
+        }
+        td{
+            padding:.5em;
+            border:solid 1px black;
+        }
+        thead{
+            background-color: lightblue;
+        }
+        tbody{
+            background-color: coral;
+        }
+    </style>
+</head>
+<body>
+    
+</body>
+    <script>
+
+        function dameMes(mes){
+            switch(mes){
+                case "1": return "January";
+                break;
+                case "2": return "February";
+                break;
+                case "3": return "March";
+                break;
+                case "4": return "April";
+                break;
+                case "5": return "May";
+                break;
+                case "6": return "June";
+                break;
+                case "7": return "July";
+                break;
+                case "8": return "August";
+                break;
+                case "9": return "September";
+                break;
+                case "10": return "October";
+                break;
+                case "11": return "November";
+                break;
+                case "12": return "December";
+                break;
+                
+            }
+        }
+        function fechaMayor(a,b){
+            let a_arr=a.split(" ");
+            let b_arr=b.split(" ");
+            let fecha1=a_arr[0],hora1=a_arr[1],fecha2=b_arr[0],hora2=b_arr[1];
+
+            let fecha1_Arr = fecha1.split("/");
+            let mes1=dameMes(fecha1_Arr[1]);
+            let fecha2_Arr = fecha2.split("/");
+            let mes2=dameMes(fecha2_Arr[1]);
+
+            let date_fecha1= new Date(mes1+" "+fecha1_Arr[0]+", "+fecha1_Arr[2]+" "+hora1);
+            let date_fecha2= new Date(mes2+" "+fecha2_Arr[0]+", "+fecha2_Arr[2]+" "+hora2);
+
+            if(date_fecha1.getTime()>date_fecha2.getTime()){
+                return -1;
+            }
+            else return 1;
+        }
+        let nombre=prompt("Introduce tu nombre");
+
+        let fecha= new Date();
+        let anyo,mes,dia,horas,minutos,segundos;
+        anyo=fecha.getFullYear();
+        mes=fecha.getMonth()+1;
+        dia=fecha.getDate();
+        horas=fecha.getHours();
+        minutos= fecha.getMinutes();
+        segundos= fecha.getSeconds();
+        if(horas<10)
+            horas="0"+horas;
+        if(minutos<10)
+            minutos="0"+minutos;
+        if(segundos<10)
+            segundos="0"+segundos;
+        let str_fecha=dia+"/"+mes+"/"+anyo+" "+horas+":"+minutos+":"+segundos;
+
+        
+        let json;
+        if(localStorage.getItem(nombre)==undefined){
+            json =
+            {
+            "fechas":[str_fecha],
+            "nombre":nombre
+            };
+            
+        }
+        else{
+            json=JSON.parse(localStorage.getItem(nombre));
+            let arr=json.fechas;
+            arr.push(str_fecha);
+            json.fechas=arr;
+            
+        }
+        localStorage.setItem(nombre,JSON.stringify(json));
+        
+        json=JSON.parse(localStorage.getItem(nombre));
+        let fechasLocal=json.fechas;
+
+        let fragmento=document.createDocumentFragment();
+
+        const h1 = document.createElement("h1");
+        h1.appendChild(document.createTextNode("Nombre del usuario: "+nombre));
+        fragmento.appendChild(h1);
+        const table = document.createElement("table");
+        const caption = document.createElement("caption");
+        caption.appendChild(document.createTextNode("Relación de accesos"));
+        table.appendChild(caption);
+        const head=document.createElement("thead");
+        let fila=document.createElement("tr");
+        let td;
+        td=document.createElement("td");
+        td.appendChild(document.createTextNode("Fecha"));
+        fila.appendChild(td);
+        td=document.createElement("td");
+        td.appendChild(document.createTextNode("Hora"));
+        fila.appendChild(td);
+        
+        head.appendChild(fila);
+        table.appendChild(head);
+        const body = document.createElement("tbody");
+        
+        fechasLocal.sort(fechaMayor);
+        fechasLocal.forEach(f => {
+            let campos=f.split(" ");
+           
+            fila=document.createElement("tr");
+            td=document.createElement("td");
+            td.appendChild(document.createTextNode(campos[0]));
+            fila.appendChild(td);
+            td=document.createElement("td");
+            td.appendChild(document.createTextNode(campos[1]));
+            fila.appendChild(td);
+            
+            body.appendChild(fila);
+
+        });
+
+        table.appendChild(body);
+        
+        fragmento.appendChild(table);
+
+        document.querySelector("body").appendChild(fragmento);
+
+        
+        
+        
+    </script>
+</html>

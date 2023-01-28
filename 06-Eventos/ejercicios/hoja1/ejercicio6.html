@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6</title>
+    <script type="text/javascript" defer src="ejercicio6.js"></script>
+    <style>
+        body{
+            text-align: center;
+        }
+        h1,p{
+            color: gray;
+        }
+        p{
+            max-width: 400px;
+            margin: auto;
+        }
+        button{
+            color:white;
+            background-color: blueviolet;
+            border-radius: .5em;
+            margin:0 5px;
+        }
+        button:disabled{
+            background-color: rgb(184, 145, 221);
+        }
+        #contenedorBotones{
+            padding: 10px;
+            display: flex;
+            max-width: 200px;
+            margin: auto;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>NÚMEROS NATURALES</h1>
+        <div id="contenedorBotones">
+            <button id="iniciar">CONTAR</button>
+            <button id="parar" disabled>PARAR</button>
+        </div>
+        <p id="numeros"></p>
+</body>
+</html>
