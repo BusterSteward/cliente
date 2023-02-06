@@ -1,0 +1,38 @@
+<!DOCTYPE html> 
+<html> 
+
+<head>
+<title>Validacion de un Formulario</title> 
+<script type="module" defer src="js/validacionFormulario.js"></script> 
+<style type="text/css"> 
+	label{ width: 150px; float:left; margin-bottom:5px; } 
+	input,select { width:150px; float:left; margin-bottom:5px; } 
+	fieldset{ background:#CCFF99; width:350px; } 
+	.error{ border: solid 2px #FF0000; } 
+</style> 
+</head> 
+
+<body> 
+<fieldset> <legend> Validación de un Formulario </legend> 
+
+<form name="formulario" id="formulario" action="http://www.google.es" method="get"> 
+	<label for="nombre">Nombre:</label> 
+	<input type="text" name="nombre" id="nombre" >  
+	<label for="edad">Edad:</label> 
+	<input name="edad" type="text" id="edad" maxlength="3" > 
+	<label for="provincia">Provincia:</label> 
+	<select name="provincia" id="provincia"> 
+		<option value="0" selected="selected">Seleccione Provincia</option> 
+		<option value="AB">Albacete</option> 
+		<option value="CR">Ciudad Real</option> 
+		<option value="CU">Cuenca</option> 
+		<option value="GU">Guadalajara</option>
+		<option value="TO">Toledo</option> </select> 
+	<input type="text" name="matricula" id="matricula">
+	<input type="reset" name="limpiar" id="limpiar" value="Limpiar" > 
+	<input type="submit" name="enviar" id="enviar" value="Enviar" > 
+</form> 
+
+</fieldset>
+</body>
+</html>

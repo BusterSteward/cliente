@@ -9,9 +9,10 @@ copo.addEventListener("drag",function(e){
     copo.style.top=(e.clientY-offsetY)+"px";
     copo.style.left=(e.clientX-offsetX)+"px";
 });*/
-copo.addEventListener("drag",function(ev){
-    console.log(ev.target.id);
-    ev.dataTransfer.setData("text", ev.target.id)
+copo.addEventListener("dragstart",function(ev){
+    console.log(ev.target);
+    ev.dataTransfer.clearData();
+    ev.dataTransfer.setData("text/plain", ev.target.id)
 });
 contenedor1.addEventListener("dragenter",function(){
     mensaje.innerText="suelta ahora en la zona 1";
