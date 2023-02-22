@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var error=false;
+    function prometoNumeros(){
+        new Promise(function(resolve,reject){
+            let num=Math.trunc(Math.random()*6);
+            setTimeout(()=>{
+                if(num==0) reject(num);
+                resolve(num);
+            },1500);
+        })
+        .finally(()=>{ console.log("Promesa ejecutada")})
+        .then(
+            result => {console.log(result);},
+            reject => {console.log("Se ha producido un error, número generado fuera de rango");error=true;}
+        );
+        
+    }
+
+    let max = Math.trunc(Math.random()*3)+1;
+    let contador=0;
+    let id=setInterval(()=>{
+        if(error||contador==max){
+            clearInterval(id);
+        }
+        else{
+            //console.log("Vamos a ejecutar la promesa "+(contador+1));
+            prometoNumeros();
+            contador++;
+        }
+    },2000);
+    
+</script>
+</html>

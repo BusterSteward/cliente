@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #chiste:hover{
+            font-size: larger;
+        }
+    </style>
+</head>
+<body>
+    <button id="boton">Pedir chiste</button>
+    <p id="chiste"></p>
+</body>
+<script>
+    boton.addEventListener("click",pedirChiste);
+    window.addEventListener("keydown",pulso);
+    window.addEventListener("keyup",despulso);
+
+    function pulso(e){
+        console.log(e.key);
+        if(e.ctrlKey&&(e.key=="m"||e.key=="M"))
+            chiste.style.textTransform="uppercase";
+
+        if(e.key=="Escape"){
+            chiste.innerText="";
+        }
+    }
+    function despulso(e){
+        if(e.key=="m"||e.key=="M")
+        chiste.style.textTransform="inherit";
+    }
+
+    
+    function pedirChiste(){
+        const url='https://api.chucknorris.io/jokes/random';
+        /*
+        const headers =
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }*/
+
+        fetch(url)
+        .then(function(response){
+            return response.json();
+        })
+        
+        .then(function(data){
+            chiste.innerText=data.value;
+        })
+        .catch(function(err){
+            console.log(err);
+        });
+
+        
+
+    }
+</script>
+</html>

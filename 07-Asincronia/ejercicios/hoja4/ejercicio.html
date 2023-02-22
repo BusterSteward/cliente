@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <script type="module" defer src="java.js"></script>
+</head>
+<body>
+    <header>
+        <h1>EJERCICIO CRUD</h1>
+
+    </header>
+    <main id="contenedorMain">
+        <section id="contenedor-formulario">
+            <h2>Introduce los datos de la pelicula nueva</h2>
+            <form action="" onsubmit="crear(this);return false;">
+                <p><label for="nombre">Nombre: </label><input name="nombre" id="nombre" type="text"></p>
+                <p><label for="nombre">Director: </label><input name="nombre" id="nombre" type="text"></p>
+                <p><label for="nombre">Clasificacion: </label><select name="clasi" id="clasi"></select></p>
+                <p><input type="reset" value="limpiar"> <input type="submit" value="Crear"></p>
+            </form>
+    
+        </section>
+        <section id="juegos">
+            <h2>Listado de peliculas</h2>
+            <table id="tabla">
+                
+            </table>
+        </section>
+        <section id="categorias">
+            <h3>Filtra la lista por categoria</h3>
+            <ul id="listaCategorias"></ul>
+        </section>
+
+    </main>
+</body>
+</html>
