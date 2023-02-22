@@ -15,10 +15,10 @@
     <main id="contenedorMain">
         <section id="contenedor-formulario">
             <h2>Introduce los datos de la pelicula nueva</h2>
-            <form action="" onsubmit="crear(this);return false;">
+            <form id="formulario" action="" onsubmit="return false;">
                 <p><label for="nombre">Nombre: </label><input name="nombre" id="nombre" type="text"></p>
-                <p><label for="nombre">Director: </label><input name="nombre" id="nombre" type="text"></p>
-                <p><label for="nombre">Clasificacion: </label><select name="clasi" id="clasi"></select></p>
+                <p><label for="director">Director: </label><input name="director" id="director" type="text"></p>
+                <p><label for="clasi">Clasificacion: </label><select name="clasi" id="clasi"></select></p>
                 <p><input type="reset" value="limpiar"> <input type="submit" value="Crear"></p>
             </form>
     
