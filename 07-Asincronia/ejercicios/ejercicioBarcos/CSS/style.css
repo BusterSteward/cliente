@@ -1,5 +1,6 @@
 ﻿*{
     box-sizing: border-box;
+    text-align: center;
 }
 body,html{
     margin: 0;
@@ -45,4 +46,16 @@ td{
 }
 .rojo{
     background-color: red;
+}
+img{
+    width: 100px;
+    height: 100px;
+    margin:1em;
+    padding: 3px;
+}
+#contenedorFlex>#botones{
+    margin-top: 1em;
+}
+.seleccionado{
+    border: 2px solid red;
 }
