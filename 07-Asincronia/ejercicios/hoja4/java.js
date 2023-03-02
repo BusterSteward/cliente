@@ -1,5 +1,6 @@
 ﻿iniciar();
-var max;
+export var max;
+
     function cargarListadoCategorias(){
 
         const url="http://localhost:3000/clasificaciones";

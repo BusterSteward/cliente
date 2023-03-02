@@ -1,12 +1,6 @@
 {
   "peliculas": [
     {
-      "id": 1,
-      "nombre": "Sexta polla",
-      "director": "yo",
-      "clasificacion": "Comedia"
-    },
-    {
       "id": 2,
       "nombre": "Pulp Fiction",
       "director": "Tarantino",
@@ -41,6 +35,18 @@
       "nombre": "Las Hurdes",
       "director": "Luis Buñuel",
       "clasificacion": "Documental"
+    },
+    {
+      "id": 8,
+      "nombre": "wef",
+      "director": "efawerg",
+      "clasificacion": "Drama"
+    },
+    {
+      "id": 9,
+      "nombre": "erthnsrntg",
+      "director": "snfgnsfgtn",
+      "clasificacion": "Drama"
     }
   ],
   "clasificaciones": [
