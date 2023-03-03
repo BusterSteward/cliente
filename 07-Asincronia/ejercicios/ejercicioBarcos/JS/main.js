@@ -137,11 +137,11 @@ function mostrarBotonEmpezar(){
     boton.addEventListener("click",comenzarPartida);
     botones.appendChild(boton);
 }
-function comenzarPartida(){
+function comenzarPartida(e){
     //transformo la matrices a json y la subo
     juego.colocarBarcosRival();
     
-    juego.enviarJSON();
+    juego.enviarJSON(e);
 
     //juego.pintarTablero2();
 

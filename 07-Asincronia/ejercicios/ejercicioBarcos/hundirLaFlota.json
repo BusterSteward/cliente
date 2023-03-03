@@ -1,76 +1,100 @@
 {
-    "tablero1":[
-        [
-            "libre",
-            "libre",
-            "libre",
-            "libre",
-            "libre"
-        ],
-        [
-            "libre",
-            "libre",
-            "libre",
-            "libre",
-            "libre"
-        ],
-        [
-            "libre",
-            "libre",
-            "libre",
-            "libre",
-            "libre"
-        ],
-        [
-            "libre",
-            "libre",
-            "libre",
-            "libre",
-            "libre"
-        ],
-        [
-            "libre",
-            "libre",
-            "libre",
-            "libre",
-            "libre"
-        ]
-    ],
-    "tablero2":[
-        [
-            "libre",
-            "libre",
-            "libre",
-            "libre",
-            "libre"
-        ],
-        [
-            "libre",
-            "libre",
-            "libre",
-            "libre",
-            "libre"
-        ],
-        [
-            "libre",
-            "libre",
-            "libre",
-            "libre",
-            "libre"
-        ],
-        [
-            "libre",
-            "libre",
-            "libre",
-            "libre",
-            "libre"
-        ],
-        [
-            "libre",
-            "libre",
-            "libre",
-            "libre",
-            "libre"
-        ]
-    ]
+  "Tablero": [
+    {
+      "id": 1,
+      "OCUPADO": "NO"
+    },
+    {
+      "id": 2,
+      "OCUPADO": "NO"
+    },
+    {
+      "id": 3,
+      "OCUPADO": "NO"
+    },
+    {
+      "id": 4,
+      "OCUPADO": "NO"
+    },
+    {
+      "id": 5,
+      "OCUPADO": "NO"
+    },
+    {
+      "OCUPADO": "SI",
+      "id": 6
+    },
+    {
+      "OCUPADO": "SI",
+      "id": 7
+    },
+    {
+      "OCUPADO": "SI",
+      "id": 8
+    },
+    {
+      "OCUPADO": "SI",
+      "id": 9
+    },
+    {
+      "OCUPADO": "SI",
+      "id": 10
+    },
+    {
+      "OCUPADO": "SI",
+      "id": 11
+    },
+    {
+      "OCUPADO": "SI",
+      "id": 12
+    },
+    {
+      "OCUPADO": "SI",
+      "id": 13
+    },
+    {
+      "id": 15,
+      "OCUPADO": "NO"
+    },
+    {
+      "OCUPADO": "SI",
+      "id": 16
+    },
+    {
+      "id": 17,
+      "OCUPADO": "NO"
+    },
+    {
+      "OCUPADO": "SI",
+      "id": 18
+    },
+    {
+      "OCUPADO": "SI",
+      "id": 19
+    },
+    {
+      "id": 20,
+      "OCUPADO": "NO"
+    },
+    {
+      "id": 21,
+      "OCUPADO": "NO"
+    },
+    {
+      "id": 22,
+      "OCUPADO": "NO"
+    },
+    {
+      "id": 23,
+      "OCUPADO": "NO"
+    },
+    {
+      "id": 24,
+      "OCUPADO": "NO"
+    },
+    {
+      "id": 25,
+      "OCUPADO": "NO"
+    }
+  ]
 }

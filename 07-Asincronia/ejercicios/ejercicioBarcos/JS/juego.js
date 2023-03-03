@@ -18,52 +18,48 @@ export class Juego {
         
     }
 
-    enviarJSON(){
+    enviarJSON(e){
+        console.log(e);
+        e.preventDefault();
         let tab1=[],tab2=[];
         let tabla1=this.tablero1.getTabla();
         let tabla2=this.tablero2.getTabla();
+        let ids_tabla1=[],ids_tabla2=[];
         for(let i=0;i<5;i++){
             tab1[i]=[];
             tab2[i]=[];
             for(let j=0;j<5;j++){
                 if(tabla1[i][j]!=0){
-                    tab1[i][j]="ocupado";
+                    ids_tabla1.push({
+                        "id":(i - 1) * 5 + j,
+                        "OCUPADO":"SI"
+                    });
                 }
                 else{
-                    tab1[i][j]="libre";
+                    ids_tabla1.push({
+                        "id":(i - 1) * 5 + j,
+                        "OCUPADO":"NO"
+                    });
                 }
-                if(tabla2[i][j]!=0){
-                    tab2[i][j]="ocupado";
-                }
-                else{
-                    tab2[i][j]="libre";
-                }
+                
+                
+                
             }
         }
-        let url="http://localhost:3000/tablero1";
-        let url2="http://localhost:3000/tablero2";
-        fetch(url, {
-            method: 'PATCH', // o 'PUT'
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              tablero1: tab1,
-            })
-          })
-          .then(response => response.json())
-          .then(data => console.log(data));
-        fetch(url2, {
-            method: 'PATCH', // o 'PUT'
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              tablero2: tab2,
-            })
-          })
-          .then(response => response.json())
-          .then(data => console.log(data));
+
+        
+            fetch("http://localhost:3000/Tablero",{
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(ids_tabla1)
+              })
+              .then(response => response.json())
+              .then(data => console.log(data))
+              .catch(error => console.error(error))
+        
+        
     }
     atacar(tablero,x,y){
         let tab,flota;
