@@ -63,6 +63,7 @@ export class Juego {
     }
     atacar(tablero,x,y){
         let tab,flota;
+        let res=false;
         if(tablero==1){
             tab=this.tablero1;
             flota=this.barcosTablero1;
@@ -83,24 +84,21 @@ export class Juego {
         
 
         let casilla=tab.tabla[x][y];
-        let hundidos,mensaje;
+        let mensaje;
         if(casilla!=0){
             color="orange";
             mensaje=flota[casilla-1].tocado();
+            res=true;
         }
         else{
             mensaje="Solo hay agua en esa zona";
             color="lightgrey";
         }
-        if(tablero==1){
-            hundidos=this.getHundidos1();
-        }
-        else{
+        if(tablero!=1){
             document.getElementById("zonaMensajes").innerHTML="<p>"+mensaje+"</p>";
-            hundidos=this.getHundidos2();
         }
         HTMLtabla.children[x].children[y].style.backgroundColor=color;
-        return hundidos;
+        return res;
     }
     getHundidos1(){
         let hundidos=0;

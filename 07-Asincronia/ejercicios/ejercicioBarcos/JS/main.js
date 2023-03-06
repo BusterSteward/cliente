@@ -172,17 +172,26 @@ function rellenarListaDeAtaques(){
 }
 function anyadirEventosZonaRival(){
     let tabla = document.getElementById("tablero2").children[0];
+    let hundidos;
     for(let i=0;i<5;i++){
         for(let j=0;j<5;j++){
             let handleClick = function() {
-                let hundidos=juego.atacar(2,i,j);
-                console.log("barcos enemigos hundidos: "+hundidos);
-                if(hundidos==3){
-                    victoria();
+                let res=juego.atacar(2,i,j);
+                if(res){
+                    hundidos=juego.getHundidos2();
+                    console.log("barcos enemigos hundidos: "+hundidos);
+                    if(hundidos==3){
+                        victoria();
+                    }
                 }
                 else{
-                    let ataque=ataquesRival.shift();
-                    hundidos=juego.atacar(1,ataque.x,ataque.y);
+                    let ataque;
+                    do{
+                        ataque=ataquesRival.shift();
+                        res=juego.atacar(1,ataque.x,ataque.y);
+                    }while(res);
+                    hundidos=juego.getHundidos1();
+
                     console.log("barcos aliados hundidos: "+hundidos);
                     if(hundidos==3){
                         derrota();
