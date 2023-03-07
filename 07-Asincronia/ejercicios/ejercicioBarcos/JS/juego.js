@@ -18,7 +18,31 @@ export class Juego {
         
     }
 
+    pidoCosas(){
+        fetch("http://localhost:3000/Tableros/0")
+              .then(response => response.json())
+              .then(data => console.log(data))
+              .catch(error => console.error(error))
+    }
+    modificoUno(){
+        let registro={
+            "id":3000,
+            "ocupado":"prueba"
+        }
+        fetch("http://localhost:3000/Tableros/1/2",{
+                  method: 'PUT',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(registro)
+                })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error(error))
+    }
     enviarJSON(e){
+        document.getElementById("p1").addEventListener("click",this.pidoCosas);
+        document.getElementById("p2").addEventListener("click",this.modificoUno);
         console.log(e);
         e.preventDefault();
         let tab1=[],tab2=[];
@@ -31,24 +55,70 @@ export class Juego {
             for(let j=0;j<5;j++){
                 if(tabla1[i][j]!=0){
                     ids_tabla1.push({
-                        "id":(i - 1) * 5 + j,
+                        "id":i* 5 + j,
                         "OCUPADO":"SI"
                     });
                 }
                 else{
                     ids_tabla1.push({
-                        "id":(i - 1) * 5 + j,
+                        "id":i * 5 + j,
                         "OCUPADO":"NO"
                     });
                 }
                 
-                
+                if(tabla2[i][j]!=0){
+                    ids_tabla2.push({
+                        "id":i* 5 + j,
+                        "OCUPADO":"SI"
+                    });
+                }
+                else{
+                    ids_tabla2.push({
+                        "id":i * 5 + j,
+                        "OCUPADO":"NO"
+                    });
+                }
                 
             }
         }
 
+
+        let i=0;
+        let interval=setInterval(function(){
+            fetch("http://localhost:3000/Tablero/"+i,{
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(ids_tabla1[i])
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(err=> console.error(err))
+            if(i==24){
+                clearInterval(interval);
+            }
+        },250);
+        j=0;
+        interval2=setInterval(function(){
+            fetch("http://localhost:3000/Tablero2/"+i,{
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(ids_tabla2[i])
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(err=> console.error(err))
+            if(j==24){
+                clearInterval(interval2);
+            }
+        },251);
+
+            set
         
-            fetch("http://localhost:3000/Tablero",{
+            fetch("http://localhost:3000/Tableros/0",{
                 method: 'PUT',
                 headers: {
                   'Content-Type': 'application/json'
@@ -58,7 +128,17 @@ export class Juego {
               .then(response => response.json())
               .then(data => console.log(data))
               .catch(error => console.error(error))
-        
+              
+              fetch("http://localhost:3000/Tableros/1",{
+                  method: 'PUT',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(ids_tabla2)
+                })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error(error))
         
     }
     atacar(tablero,x,y){

@@ -1,100 +1,207 @@
 {
-  "Tablero": [
+  "Tablero": 
+  [
     {
-      "id": 1,
-      "OCUPADO": "NO"
+      "id":0,
+      "Ocupado":"NO"
     },
     {
-      "id": 2,
-      "OCUPADO": "NO"
+      "id":1,
+      "Ocupado":"NO"
     },
     {
-      "id": 3,
-      "OCUPADO": "NO"
+      "id":2,
+      "Ocupado":"NO"
     },
     {
-      "id": 4,
-      "OCUPADO": "NO"
+      "id":3,
+      "Ocupado":"NO"
     },
     {
-      "id": 5,
-      "OCUPADO": "NO"
+      "id":4,
+      "Ocupado":"NO"
     },
     {
-      "OCUPADO": "SI",
-      "id": 6
+      "id":5,
+      "Ocupado":"NO"
     },
     {
-      "OCUPADO": "SI",
-      "id": 7
+      "id":6,
+      "Ocupado":"NO"
     },
     {
-      "OCUPADO": "SI",
-      "id": 8
+      "id":7,
+      "Ocupado":"NO"
     },
     {
-      "OCUPADO": "SI",
-      "id": 9
+      "id":8,
+      "Ocupado":"NO"
     },
     {
-      "OCUPADO": "SI",
-      "id": 10
+      "id":9,
+      "Ocupado":"NO"
     },
     {
-      "OCUPADO": "SI",
-      "id": 11
+      "id":10,
+      "Ocupado":"NO"
     },
     {
-      "OCUPADO": "SI",
-      "id": 12
+      "id":11,
+      "Ocupado":"NO"
     },
     {
-      "OCUPADO": "SI",
-      "id": 13
+      "id":12,
+      "Ocupado":"NO"
     },
     {
-      "id": 15,
-      "OCUPADO": "NO"
+      "id":13,
+      "Ocupado":"NO"
     },
     {
-      "OCUPADO": "SI",
-      "id": 16
+      "id":14,
+      "Ocupado":"NO"
     },
     {
-      "id": 17,
-      "OCUPADO": "NO"
+      "id":15,
+      "Ocupado":"NO"
     },
     {
-      "OCUPADO": "SI",
-      "id": 18
+      "id":16,
+      "Ocupado":"NO"
     },
     {
-      "OCUPADO": "SI",
-      "id": 19
+      "id":17,
+      "Ocupado":"NO"
     },
     {
-      "id": 20,
-      "OCUPADO": "NO"
+      "id":18,
+      "Ocupado":"NO"
     },
     {
-      "id": 21,
-      "OCUPADO": "NO"
+      "id":19,
+      "Ocupado":"NO"
     },
     {
-      "id": 22,
-      "OCUPADO": "NO"
+      "id":20,
+      "Ocupado":"NO"
     },
     {
-      "id": 23,
-      "OCUPADO": "NO"
+      "id":21,
+      "Ocupado":"NO"
     },
     {
-      "id": 24,
-      "OCUPADO": "NO"
+      "id":22,
+      "Ocupado":"NO"
     },
     {
-      "id": 25,
-      "OCUPADO": "NO"
+      "id":23,
+      "Ocupado":"NO"
+    },
+    {
+      "id":24,
+      "Ocupado":"NO"
+    }
+  ],
+  "Tablero2":[
+    {
+      "id":0,
+      "Ocupado":"NO"
+    },
+    {
+      "id":1,
+      "Ocupado":"NO"
+    },
+    {
+      "id":2,
+      "Ocupado":"NO"
+    },
+    {
+      "id":3,
+      "Ocupado":"NO"
+    },
+    {
+      "id":4,
+      "Ocupado":"NO"
+    },
+    {
+      "id":5,
+      "Ocupado":"NO"
+    },
+    {
+      "id":6,
+      "Ocupado":"NO"
+    },
+    {
+      "id":7,
+      "Ocupado":"NO"
+    },
+    {
+      "id":8,
+      "Ocupado":"NO"
+    },
+    {
+      "id":9,
+      "Ocupado":"NO"
+    },
+    {
+      "id":10,
+      "Ocupado":"NO"
+    },
+    {
+      "id":11,
+      "Ocupado":"NO"
+    },
+    {
+      "id":12,
+      "Ocupado":"NO"
+    },
+    {
+      "id":13,
+      "Ocupado":"NO"
+    },
+    {
+      "id":14,
+      "Ocupado":"NO"
+    },
+    {
+      "id":15,
+      "Ocupado":"NO"
+    },
+    {
+      "id":16,
+      "Ocupado":"NO"
+    },
+    {
+      "id":17,
+      "Ocupado":"NO"
+    },
+    {
+      "id":18,
+      "Ocupado":"NO"
+    },
+    {
+      "id":19,
+      "Ocupado":"NO"
+    },
+    {
+      "id":20,
+      "Ocupado":"NO"
+    },
+    {
+      "id":21,
+      "Ocupado":"NO"
+    },
+    {
+      "id":22,
+      "Ocupado":"NO"
+    },
+    {
+      "id":23,
+      "Ocupado":"NO"
+    },
+    {
+      "id":24,
+      "Ocupado":"NO"
     }
   ]
 }
